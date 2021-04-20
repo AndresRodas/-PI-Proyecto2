@@ -1,0 +1,21 @@
+*****CORRER IMAGEN DE ORACLE
+sudo docker run -d -p 1521:1521 --name oracle store/oracle/database-enterprise:12.2.0.1
+*****ABRIR CONSOLA ORACLE
+sudo docker exec -it oracle bash -c "source /home/oracle/.bashrc; sqlplus /nolog"
+*****CONECTAR
+ORCLCDB.localdomain
+
+comandos sql
+connect sys as sysdba;
+alter session set "_ORACLE_SCRIPT"=true;
+create user mia1 identified by mia1; cambian mia1 por su usuario y contraseña
+GRANT ALL PRIVILEGES TO mia1;
+
+Luego descargamos sql developer y le vamos a conectar con los siguientes datos
+
+SQL DEVELOPER
+Username: mia1
+Password: mia1
+Hostname: localhost
+Port: 1521
+Service name: ORCLCDB.localdomain este datos es importante para la conexión.
