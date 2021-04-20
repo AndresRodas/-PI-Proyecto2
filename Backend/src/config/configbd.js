@@ -1,19 +1,45 @@
-const oracledb = require('oracledb');
+const mysql = require('mysql');
+const { promisify } = require('util');
+//const { connect } = require('../routes/person-rotes');
 
-cns = {
-    user: "mia1",
-    password: "mia1",
-    connectString: "localhost/ORCLCDB.localdomain"
+
+database = {
+    host: 'localhost',
+    user: 'root',
+    password: 'MAYQ',
+    database: 'practicas_iniciales'
+    //connectString: "jdbc:mysql://localhost:3306"
     //user: "BD",
     //password: "3887",
     //connectString: "172.17.0.2/ORCLCDB"
 }
 
-async function Open(sql, binds, autoCommit) {
-    let cnn = await oracledb.getConnection(cns);
-    let result = await cnn.execute(sql, binds, { autoCommit });
-    cnn.release();
-    return result;
-}
+const pool = mysql.createPool(database)
 
-exports.Open = Open;
+pool.getConnection((err,connection)=>{
+    if (err){
+        if (err.code === 'PROTOCOL_CONNECTION_LOST'){
+            console.log('La coneccion con la base de datos fue cerrada')
+        }
+        if (err.code === 'ER_CON_COUNT_ERROR'){
+            console.log('La base de datos tiene muchas conecciones')
+        }
+        if (err.code === 'ECONNREFUSED'){
+            console.log('La coneccion con la base de datos fue rechazada')
+        }
+    }
+    if(connection) connection.release();
+    console.log('Base de datos conectada!')
+    return;
+});
+
+// async function Open(sql, binds, autoCommit) {
+//     let cnn = await oracledb.getConnection(cns);
+//     let result = await cnn.execute(sql, binds, { autoCommit });
+//     cnn.release();
+//     return result;
+// }
+
+
+pool.query = promisify(pool.query);
+module.exports = pool;

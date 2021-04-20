@@ -3,8 +3,10 @@ const morgan = require('morgan');
 const cors = require('cors');
 const app = express();
 
+
+
 //imports
-const personRoutes = require('./routes/person-rotes');
+const Routes = require('./routes/rutas');
 
 //settings
 app.set('port', 3600); //se setea el puerto
@@ -16,7 +18,7 @@ app.use(express.urlencoded({ extended: false })); //info anidada por medio de ru
 
 //routes
 app.use(cors())
-app.use(personRoutes);
+app.use(Routes);
 
     
 //run

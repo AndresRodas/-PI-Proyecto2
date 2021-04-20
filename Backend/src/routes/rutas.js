@@ -1,0 +1,131 @@
+const { Router } = require('express'); //se jala ruta de express
+const router = Router();
+const BD = require('../config/configbd');
+var nodemailer = require('nodemailer')
+
+
+
+
+
+
+router.get('/', async (req,res) => {
+    console.log('Todo excelente jijiji')
+    let retu = []
+    let val1 = {
+        "id_user":"Hola",
+        "name_user":"Team"
+    }
+    retu.push(val1)
+    let val2 = {
+        "id_user":"Mundo",
+        "name_user":"Pankey"
+    }
+    retu.push(val2)
+    res.json(retu)
+})
+
+
+//test coneccion mysql
+//GET MYSQL
+router.get('/test', async (req, res) => {
+    BD.query('select * from persona',(err,rows,fields) => {
+        if(!err){
+            res.json(rows);
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        }
+    });
+});
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    BD.query('select * from persona where id = ?', [id],(err,rows,fields) => {
+        if(!err){
+            res.json(rows[0]);
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        }
+    });
+});
+
+//POST MYSQL
+router.post('/add', async (req, res) => {
+    const { nombre, apellido, genero} = req.body;
+    const query = `
+    insert into persona(nombre,apellido,genero)
+    values(?,?,?);
+    `;
+    BD.query(query,[nombre, apellido, genero],(err,rows,fields) => {
+        if(!err){
+            res.json({Status: 'Persona '+nombre+' agregada!'});
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        }  
+    });
+
+})
+
+
+//UPDATE MYSQL
+router.put("/:id", async (req, res) => {
+    const { nombre, apellido, genero } = req.body;
+    const { id } = req.params;
+    const query = `
+        UPDATE persona
+        SET nombre = ?, apellido = ?, genero = ? WHERE id = ?
+    `; 
+    BD.query(query, [nombre, apellido, genero, id], (err, rows, fields) => {
+        if(!err){
+            res.json({Status: 'Persona '+nombre+' editada!'});
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        } 
+    })
+})
+
+//DELETE MYSQL
+router.delete("/:id", async (req, res) => {
+    const { id } = req.params;
+    const query = 'delete from persona where id = ?';
+    BD.query(query, [id], (err, rows, fields) => {
+        if(!err){
+            res.json({ "msg": "Persona eliminada" })
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        } 
+    }); 
+
+    
+})
+
+//enviar correo
+router.post('/enviarcorreo', function(req, res){
+    const { name, lname, email } = req.body;
+    var smtpTransport = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'bastianperis12@gmail.com',
+            pass: 'hesoyam666'
+        }
+    })
+    var output = '<strong><h1>CORREO DE CONFIRMACION</h1> \n\nHola <h3>'+name+' '+lname+'</h3>\nTu correo electronico ha sido confirmado en <h3>GTSales!!</h3>\nIngresa al siguiente link: http://localhost:4200/login para ingresar con tu correo electronico y contraseña.</strong>'
+    var mailOptions = {
+        from: 'GTSales',
+        to: email,
+        subject: 'Confirmacion',
+        text: 'Correo de confirmacion.',
+        html: output
+    }
+    smtpTransport.sendMail(mailOptions, function(error, respuesta){
+        if(error){
+            console.log(error)
+        }else{
+            res.send('Mensaje enviado!!')
+        }
+    })
+})
+
+ 
+
+
+
+module.exports = router;
