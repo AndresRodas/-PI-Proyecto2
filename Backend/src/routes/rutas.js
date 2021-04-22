@@ -3,32 +3,19 @@ const router = Router();
 const BD = require('../config/configbd');
 var nodemailer = require('nodemailer')
 
-
-
-
-
-
-router.get('/', async (req,res) => {
-    console.log('Todo excelente jijiji')
-    let retu = []
-    let val1 = {
-        "id_user":"Hola",
-        "name_user":"Team"
-    }
-    retu.push(val1)
-    let val2 = {
-        "id_user":"Mundo",
-        "name_user":"Pankey"
-    }
-    retu.push(val2)
-    res.json(retu)
-})
-
-
 //test coneccion mysql
 //GET MYSQL
-router.get('/test', async (req, res) => {
+router.get('/', async (req, res) => {
     BD.query('select * from persona',(err,rows,fields) => {
+        if(!err){
+            res.json(rows);
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        }
+    });
+});
+router.get('/getUsers', async (req, res) => {
+    BD.query('select * from usuario',(err,rows,fields) => {
         if(!err){
             res.json(rows);
         } else{
@@ -96,6 +83,10 @@ router.delete("/:id", async (req, res) => {
 
     
 })
+
+
+
+
 
 //enviar correo
 router.post('/enviarcorreo', function(req, res){
