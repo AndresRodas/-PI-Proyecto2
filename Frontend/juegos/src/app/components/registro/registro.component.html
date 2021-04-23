@@ -1,0 +1,47 @@
+<div class="container mt-5">
+    <div class="row mt-5 justify-content-center">
+        <div class="col-6">
+        
+            <form>
+                <div class="form-group container">
+                    <div class="form-group row">
+                        <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Nombre</label>&nbsp;&nbsp;
+                        <input [(ngModel)]="name_in" [ngModelOptions]="{standalone: true}" type="text" class="form-control-lg" id="colFormLabelLg" placeholder="First Name">
+                    </div>
+                    <div class="form-group row"> 
+                        <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Apellido</label>&nbsp;&nbsp;
+                        <input [(ngModel)]="lname_in" [ngModelOptions]="{standalone: true}" type="text" class="form-control-lg" id="colFormLabelLg" placeholder="Last Name">
+                    </div>
+                    <div class="form-group row">
+                        <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Username</label>&nbsp;&nbsp;
+                        <input [(ngModel)]="user_in" [ngModelOptions]="{standalone: true}" type="text" class="form-control-lg" id="colFormLabelLg" placeholder="User">
+                    </div>
+                    <div class="form-group row">
+                        <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Email</label>&nbsp;&nbsp;
+                        <input [(ngModel)]="email_in" [ngModelOptions]="{standalone: true}" type="email" class="form-control-lg" id="colFormLabelLg" placeholder="ejemplo@email.com">
+                    </div>
+                    <div class="form-group row">
+                        <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Pass</label>&nbsp;&nbsp;
+                        <input [(ngModel)]="pass_in" [ngModelOptions]="{standalone: true}" type="password" class="form-control-lg" id="colFormLabelLg" placeholder="********">
+                    </div>
+                    <div class="form-group row">
+                        <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Confirm Pass</label>&nbsp;&nbsp;
+                        <input [(ngModel)]="pass_in_v" [ngModelOptions]="{standalone: true}"     type="password" class="form-control-lg" id="colFormLabelLg" placeholder="********">
+                    </div>
+                    <div class="form-group row">
+                        <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Fecha Nac.</label>&nbsp;&nbsp;
+                        <input [(ngModel)]="fecha_in" [ngModelOptions]="{standalone: true}" type="date" class="form-control-lg" id="colFormLabelLg" placeholder="1990-01-01">
+                    </div>
+                    <div class="form-group row">
+                        <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">Biografia</label>&nbsp;&nbsp;
+                        <input [(ngModel)]="bio_in" [ngModelOptions]="{standalone: true}" type="text" class="form-control-lg" id="colFormLabelLg" placeholder="Biografia personal">
+                    </div>
+                 <br>
+                  <button (click)="VerificarUser()" type="submit" class="btn btn-primary ">Registrar Usuario</button>
+                </div>
+    
+              </form>
+        
+        </div>
+    </div>
+</div>

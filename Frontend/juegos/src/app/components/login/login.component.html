@@ -13,10 +13,10 @@
             <h2>RetroGames - SignIn</h2>
             <br><br>
             <form>
-                <div class="form-group">
+                <div class="form-group">            
                     <label for="exampleInputEmail1">Username</label>
                     <input [(ngModel)]="user_input" name="user_input" type="email" class="form-control"
-                        aria-describedby="emailHelp" placeholder="example@email.com"><br>
+                        aria-describedby="emailHelp" placeholder="ExampleUser"><br>
                     <label for="exampleInputEmail1">Password</label>
                     <input [(ngModel)]="pass_input" name="pass" type="password" class="form-control"
                         aria-describedby="emailHelp" placeholder="Password">
@@ -25,8 +25,8 @@
             </form>
             <br> 
                 <button (click)="Ingresar()" type="submit" class="btn btn-primary btn-block">Iniciar Sesion</button>
-                <button type="submit" class="btn btn-primary btn-block">Recuperar Contraseña</button>
                 <button (click)="NewUser()" type="submit" class="btn btn-primary btn-block">Registrarse</button>
+                <button (click)="RecoverUser()" type="submit" class="btn btn-primary btn-block">Olvidé mi contraseña...</button>
         </div>
 
 

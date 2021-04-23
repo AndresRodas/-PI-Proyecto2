@@ -50,6 +50,23 @@ router.post('/add', async (req, res) => {
     });
 
 })
+router.post('/setUsers', async (req, res) => {
+    const { name, last_name, user, email, pass, bio, fecha  } = req.body;
+    console.log(name,last_name,user,email,pass,bio,fecha)
+    const query = `
+    insert into usuario (nombre,apellido,username,correo,password,biografia,fecha)
+    values(?,?,?,?,?,?,?);
+    `;
+    BD.query(query,[name, last_name, user, email, pass, bio, fecha],(err,rows,fields) => {
+        if(!err){
+            res.json({Status: 'Persona '+nombre+' agregada!'});
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        }  
+    });
+
+})
+
 
 
 //UPDATE MYSQL

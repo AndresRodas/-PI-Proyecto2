@@ -9,12 +9,16 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RegistroComponent } from './components/registro/registro.component';
+import { RecuperarComponent } from './components/recuperar/recuperar.component';
 
 @NgModule({  
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    RegistroComponent,
+    RecuperarComponent
   ],
   imports: [
     BrowserModule,
