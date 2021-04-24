@@ -59,7 +59,7 @@ router.post('/setUsers', async (req, res) => {
     `;
     BD.query(query,[name, last_name, user, email, pass, bio, fecha],(err,rows,fields) => {
         if(!err){
-            res.json({Status: 'Persona '+nombre+' agregada!'});
+            res.json({Status: 'Persona '+name+' agregada!'});
         } else{
             console.log('Error al hacer consulta: '+err)
         }  

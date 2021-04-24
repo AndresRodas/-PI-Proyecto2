@@ -31,7 +31,7 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  //verificacion de datos de nuevo usuario
   VerificarUser(){
     //consultando users
     this.LoginService.GetUsers().subscribe((res:Usuario[])=>{
@@ -63,16 +63,13 @@ export class RegistroComponent implements OnInit {
     })
     
   }
-
-
-
+  //Creacion de nuevo usuario
   CrearUser(){
     console.log('Crear usuario!!')
     this.LoginService.SetUsers(this.name_in, this.lname_in, this.user_in, this.email_in, this.pass_in, this.bio_in,this.fecha_in)
     .subscribe((res: Usuario[]) =>{
       this.Users = res;
       console.log(this.Users)
-      alert('Usuario creado con exito!')
       this.name_in = ''
       this.lname_in = ''
       this.user_in = ''
@@ -83,6 +80,7 @@ export class RegistroComponent implements OnInit {
       this.bio_in = ''
     })
     alert('Usuario registrado con exito!! ')
+    this.router.navigate(['/login'])
   }
 
 }
