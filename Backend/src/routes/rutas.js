@@ -23,6 +23,35 @@ router.get('/getUsers', async (req, res) => {
         }
     });
 });
+router.get('/getPosts', async (req, res) => {
+    BD.query(`
+    select pu.id, us.username user, ju.nombre game, pu.fecha date, pu.comentario comment from publicacion pu
+    inner join usuario us on pu.id_usuario = us.id
+    inner join juego ju on pu.id_juego = ju.id
+    order by pu.fecha desc;
+    `,(err,rows,fields) => {
+        if(!err){
+            res.json(rows);
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        }
+    });
+});
+router.get('/getComments', async (req, res) => {
+    BD.query(`
+    select us.username user, co.comentario comment, co.id_publicacion post  from comentario co
+    inner join usuario us on co.id_usuario = us.id;
+    `,(err,rows,fields) => {
+        if(!err){
+            res.json(rows);
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        }
+    });
+});
+
+
+
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
     BD.query('select * from persona where id = ?', [id],(err,rows,fields) => {

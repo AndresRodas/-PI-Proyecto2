@@ -146,4 +146,10 @@ values (4,1,'Yo pasaba horas jugandolo tambien jaja'),
        (3,6,'no lo jugué aun, el primero que jugué fue the ocarina of zelda :(');
 
 describe usuario;
-select * from usuario;
+select us.username, ju.nombre, pu.fecha, pu.comentario from publicacion pu
+inner join usuario us on pu.id_usuario = us.id
+inner join juego ju on pu.id_juego = ju.id
+order by pu.fecha;
+
+select us.username, co.comentario, co.id_publicacion post  from comentario co
+inner join usuario us on co.id_usuario = us.id;

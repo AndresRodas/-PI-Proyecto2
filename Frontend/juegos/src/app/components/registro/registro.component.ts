@@ -78,9 +78,10 @@ export class RegistroComponent implements OnInit {
       this.pass_in_v = ''
       this.fecha_in = ''
       this.bio_in = ''
+      alert('Usuario registrado con exito!! ')
+      this.router.navigate(['/login'])
     })
-    alert('Usuario registrado con exito!! ')
-    this.router.navigate(['/login'])
+    
   }
 
 }

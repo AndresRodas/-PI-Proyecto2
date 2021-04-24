@@ -18,9 +18,16 @@ export class GamesService {
     const url = 'http://localhost:3600/getUsers';
     return this.http.get(url);
   }
+  GetPosts(){ 
+    const url = 'http://localhost:3600/getPosts';
+    return this.http.get(url);
+  }
+  GetComments(){ 
+    const url = 'http://localhost:3600/getComments';
+    return this.http.get(url);
+  }
 
   SetUsers(name: string, last_name:string, user:string, email: string, pass: string, bio: string, fecha: string){
-    console.log(name+' NOMBREEE')
     const url = 'http://localhost:3600/setUsers'
     return this.http.post(
       url, 

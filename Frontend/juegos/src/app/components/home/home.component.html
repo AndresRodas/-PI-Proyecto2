@@ -1,1 +1,79 @@
-<p>home works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+    <a [routerLink]="['/home']" class="navbar-brand" >INICIO</a>
+    <button [routerLink]="['/home']" class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a [routerLink]="['/games']" class="nav-link" href="#">Juegos<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a [routerLink]="['/users']" class="nav-link" href="#">Usuarios<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a [routerLink]="['/biblioteca']" class="nav-link" href="#">Biblioteca<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a [routerLink]="['/profile']" class="nav-link" href="#">Mi Perfil<span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item active">
+          <a [routerLink]="['/login']" class="nav-link" href="#">Salir<span class="sr-only">(current)</span></a>
+        </li>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <h2>RetroGames</h2>
+      </ul>
+      <form class="form-inline my-2 my-lg-0"> 
+        <input [(ngModel)]="search" [ngModelOptions]="{standalone: true}" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button (click)="Buscar()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+  
+  
+  <div class="container mt-5">
+    <div class="row">
+        <div >
+            <div class="row justify-content-center h-100" >
+  
+                <div  *ngFor="let pub of Post" class="col-12">
+                    <div class="card bg-light mb-3">
+
+
+                        <div class="card-header">{{pub.user}} - <b>{{pub.game}}</b><br>{{pub.date.split('T',1)}}</div>
+                        
+                        <div class="card-body">
+                          <!-- Aqui va el contenido de la publicacion -->
+                            <h5 class="card-title">{{pub.comment}}</h5>
+                        </div>
+                        <div class="card-footer">
+                          <!-- Comentarios -->
+                          <ng-container *ngFor="let com of Comment">
+                            <div *ngIf="com.post == pub.id" class="card-footer">
+                              <h5  class="card-title"><b>{{com.user}}:</b> {{com.comment}}</h5>
+                            </div>
+                          </ng-container>
+
+                          <br>
+                          <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Comentar:</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                          </div>
+                          <button (click)="Detalle(pub)" type="submit" class="btn btn-dark btn-block">Comentar</button>
+                        </div>
+
+                        
+                    </div>
+                    
+                </div>
+
+                
+            </div>
+            
+        </div>
+    </div>
+  </div>
+  
