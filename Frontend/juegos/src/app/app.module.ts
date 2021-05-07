@@ -11,6 +11,11 @@ import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegistroComponent } from './components/registro/registro.component';
 import { RecuperarComponent } from './components/recuperar/recuperar.component';
+import { GamesComponent } from './components/games/games.component';
+import { UsersComponent } from './components/users/users.component';
+import { LibraryComponent } from './components/library/library.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({  
   declarations: [
@@ -18,7 +23,12 @@ import { RecuperarComponent } from './components/recuperar/recuperar.component';
     LoginComponent,
     HomeComponent,
     RegistroComponent,
-    RecuperarComponent
+    RecuperarComponent,
+    GamesComponent,
+    UsersComponent,
+    LibraryComponent,
+    ProfileComponent,
+    TestComponent  
   ],
   imports: [
     BrowserModule,

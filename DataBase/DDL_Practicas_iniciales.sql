@@ -153,3 +153,5 @@ order by pu.fecha;
 
 select us.username, co.comentario, co.id_publicacion post  from comentario co
 inner join usuario us on co.id_usuario = us.id;
+
+select * from publicacion;

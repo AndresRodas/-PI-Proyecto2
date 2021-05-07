@@ -8,10 +8,6 @@ database = {
     user: 'root',
     password: 'MAYQ',
     database: 'practicas_iniciales'
-    //connectString: "jdbc:mysql://localhost:3306"
-    //user: "BD",
-    //password: "3887",
-    //connectString: "172.17.0.2/ORCLCDB"
 }
 
 const pool = mysql.createPool(database)
