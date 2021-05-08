@@ -6,6 +6,7 @@ import { GamesService } from '../../services/games.service'
 import { Usuario } from '../../models/user.interface'
 import { Publicacion } from '../../models/post.interface'
 import { Comentario } from '../../models/comment.interface'
+import { Game } from '../../models/game.interface'
 
 //router
 import { Router } from '@angular/router'
@@ -27,13 +28,16 @@ export class HomeComponent implements OnInit {
   Comment: Comentario[] = []
   User: Usuario
   Publicacion: string
+  Games: Game[] = []
 
   constructor(public GameService: GamesService, private router: Router) { }
 
   ngOnInit(): void {
-    //se llenan las publicaciones y los comentarios
+    //se llenan las publicaciones, comentarios y juegos
     this.ActualzarPublicaciones()
     this.ActualizarComentarios()
+    this.ActualizarJuegos()
+
   }
 
   Buscar() {
@@ -52,29 +56,36 @@ export class HomeComponent implements OnInit {
         console.log(res)
         alert('Comentario agregado correctamente!')
         //limpiando input
-        this.newCom.Element.value = '';
+        Comment = ''
         //actualizando comentarios
         this.ActualizarComentarios()
       })
     }
   }
 
-  Publicar(game:number) {
-    if (this.Publicacion == '') {
+  Publicar(game: string) {
+    if (this.Publicacion == undefined || this.Publicacion == '') {
       alert('Antes escribe algo interesante...')
+    } else if (game == 'Seleccione un juego para la publicacion') {
+      alert('Antes seleccione algun juego...')
     } else {
+      //obteniendo fecha actual
       let date: Date = new Date();
-      
+      let fecha:string = date.toISOString().split('T',1)[0]
+      //obteniendo usuario actual
       this.User = this.getCurrentUser('UsuarioLogeado')
-      this.GameService.SetPost(this.User.id, game , date.toISOString(), this.Publicacion)
-      .subscribe((res: Publicacion) => {
-        console.log(res)
-        alert('Tu opinion ha sido publicada!')
-        //limpiando input
-        this.newCom.Element.value = '';
-        //actualizando comentarios
-        this.ActualizarComentarios()
-      })
+
+      this.GameService.SetPost(this.User.id, game, fecha, this.Publicacion)
+        .subscribe((res: Publicacion) => {
+          console.log(res)
+          alert('Tu Publicacion ha sido agregada!')
+          //limpiando input
+          this.Publicacion = ''
+          //actualizando
+          this.ActualzarPublicaciones()
+          this.ActualizarComentarios()
+          this.ActualizarJuegos()
+        })
     }
   }
 
@@ -93,6 +104,7 @@ export class HomeComponent implements OnInit {
     //se llenan los post al iniciar el componente
     this.GameService.GetPosts().subscribe((res: Publicacion[]) => {
       console.log(res)
+      this.Post = []
       this.Post = res
     })
 
@@ -101,7 +113,16 @@ export class HomeComponent implements OnInit {
     //se llenan los comebtarios al iniciar el componte
     this.GameService.GetComments().subscribe((res: Comentario[]) => {
       console.log(res)
+      this.Comment = []
       this.Comment = res
+    })
+  }
+  ActualizarJuegos() {
+    //se llenan los juegos para una nueva publicacion
+    this.GameService.GetGames().subscribe((res: Game[]) => {
+      console.log(res)
+      this.Games = []
+      this.Games = res
     })
   }
 
@@ -125,8 +146,6 @@ export class HomeComponent implements OnInit {
   }
 
   Home() {
-    //se limpian las publicaciones
-    this.Post = []
     //se llenan las publicaciones y los comentarios
     this.ActualzarPublicaciones()
     this.ActualizarComentarios()

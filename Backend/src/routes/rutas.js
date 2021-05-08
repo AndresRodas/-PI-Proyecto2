@@ -46,7 +46,6 @@ router.get('/getPubliUsers:username', async (req, res) => {
         }
     });
 });
-
 //get publicaciones filtradas por juego
 router.get('/getPubliGames:nombre', async (req, res) => {
     const { nombre } = req.params;
@@ -65,12 +64,23 @@ router.get('/getPubliGames:nombre', async (req, res) => {
         }
     });
 });
-
 //get comentarios
 router.get('/getComments', async (req, res) => {
     BD.query(`
     select us.username user, co.comentario comment, co.id_publicacion post  from comentario co
     inner join usuario us on co.id_usuario = us.id
+    `,(err,rows,fields) => {
+        if(!err){
+            res.json(rows);
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        }
+    });
+});
+//get juegos
+router.get('/getGames', async (req, res) => {
+    BD.query(`
+    select * from juego
     `,(err,rows,fields) => {
         if(!err){
             res.json(rows);
@@ -116,12 +126,12 @@ router.post('/setComments', async (req, res) => {
 
 //post publicacion
 router.post('/setPosts', async (req, res) => {
-    const { id_usuario, id_juego, fecha, comentario  } = req.body;
+    const { id_usuario, juego, fecha, comentario  } = req.body;
     const query = `
     insert into publicacion (id_usuario, id_juego, fecha, comentario)
-    values(?,?,?,?)
+    values(?,(select id from juego where nombre = ?),?,?)
     `;
-    BD.query(query,[id_usuario, id_juego, fecha, comentario ],(err,rows,fields) => {
+    BD.query(query,[id_usuario, juego, fecha, comentario ],(err,rows,fields) => {
         if(!err){
             res.json({Status: 'Publicacion '+comentario+' agregada!'});
         } else{

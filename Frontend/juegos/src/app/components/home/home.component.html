@@ -6,24 +6,23 @@
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item ">
-        <a [routerLink]="['/games']" type="button" class="btn btn-outline-secondary" href="#">Juegos<span
+        <a [routerLink]="['/games']" type="button" class="btn btn-outline-primary " href="#">Juegos<span
             class="sr-only">(current)</span></a>
       </li>&nbsp;&nbsp;
       <li class="nav-item ">
-        <a [routerLink]="['/users']" type="button" class="btn btn-outline-secondary" href="#">Usuarios<span
+        <a [routerLink]="['/users']" type="button" class="btn btn-outline-success" href="#">Usuarios<span
             class="sr-only">(current)</span></a>
       </li>&nbsp;&nbsp;
       <li class="nav-item ">
-        <a [routerLink]="['/library']" class="btn btn-outline-secondary" href="#">Biblioteca<span
+        <a [routerLink]="['/library']" class="btn btn-outline-info" href="#">Biblioteca<span
             class="sr-only">(current)</span></a>
       </li>&nbsp;&nbsp;
       <li class="nav-item ">
-        <a [routerLink]="['/profile']" class="btn btn-outline-secondary" href="#">Mi Perfil<span
+        <a [routerLink]="['/profile']" class="btn btn-outline-warning" href="#">Mi Perfil<span
             class="sr-only">(current)</span></a>
       </li>&nbsp;&nbsp;
       <li class="nav-item ">
-        <a [routerLink]="['/']" class="btn btn-outline-secondary" href="#">Salir<span
-            class="sr-only">(current)</span></a>
+        <a [routerLink]="['/']" class="btn btn-outline-danger" href="#">Salir<span class="sr-only">(current)</span></a>
       </li>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <p class="h3 row justify-content-center">RetroGames</p>
@@ -31,13 +30,13 @@
     <form class="form-inline">
       <input [(ngModel)]="SearchUser" [ngModelOptions]="{standalone: true}" class="form-control mr-sm-1" type="search"
         placeholder="Filtrar Usuario" aria-label="Search">
-      <button (click)="FiltrarUsuarios()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <button (click)="FiltrarUsuarios()" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <form class="form-inline">
       <input [(ngModel)]="SearchGame" [ngModelOptions]="{standalone: true}" class="form-control mr-sm-1" type="search"
         placeholder="Filtrar Juego" aria-label="Search">
-      <button (click)="FiltrarJuegos()" class="btn btn-outline-primary" type="submit">Search</button>
+      <button (click)="FiltrarJuegos()" class="btn btn-outline-success" type="submit">Search</button>
     </form>
   </div>
 </nav>
@@ -46,13 +45,12 @@
 
   <div class="card-footer bg-light container mt-2">
     <div class="mb-3">
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-      [(ngModel)]="Publicacion" [ngModelOptions]="{standalone: true}" 
-      placeholder="¿En qué juego estás pensando?"></textarea>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="Publicacion"
+        [ngModelOptions]="{standalone: true}" placeholder="¿En qué juego estás pensando?"></textarea>
     </div>
-    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-      <option #game selected>Open this select menu</option>
-      <option value="1">One</option>
+    <select #game class="form-select-lg mb-3" aria-label=".form-select-lg example">
+      <option selected>Seleccione un juego para la publicacion</option>
+      <option *ngFor="let game of Games">{{game.nombre}}</option>
     </select>
     <button (click)="Publicar(game.value)" type="submit" class="btn btn-primary btn-block">Publicar</button>
   </div>
@@ -76,12 +74,14 @@
                   </div>
                 </ng-container>
                 <br>
-                <div class="mb-3">
-                  <label for="exampleFormControlTextarea1" class="form-label">Comentar:</label>
-                  <textarea #newComment class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <button (click)="Comentar(pub,newComment.value)" type="submit"
-                  class="btn btn-dark btn-block">Comentar</button>
+                <form action="#">
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Comentar:</label>
+                    <textarea #newComment class="form-control" id="textarea" rows="3"></textarea>
+                  </div>
+                  <button (click)="Comentar(pub,newComment.value)" type="reset"
+                    class="btn btn-dark btn-block">Comentar</button>
+                </form>
               </div>
             </div>
           </div>
@@ -90,15 +90,14 @@
     </div>
   </div>
 
-  <div *ngIf="this.Post.length == 0" class="row justify-content-center vh-100">
-    <p class=" h1 text-muted">Sin Resultados...</p>&nbsp;&nbsp;&nbsp;&nbsp;
-    <div>
-      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-emoji-dizzy"
-        viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-        <path
-          d="M9.146 5.146a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zm-5 0a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 1 1 .708.708l-.647.646.647.646a.5.5 0 1 1-.708.708L5.5 7.207l-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zM10 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
-      </svg>
-    </div>
-  </div>
-</body>
+
+</body><br><br><br>
+<div *ngIf="this.Post.length == 0" class="row justify-content-center vh-10">
+  <p class=" h1 text-muted">Sin Resultados...</p>&nbsp;&nbsp;&nbsp;&nbsp;
+  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-emoji-dizzy"
+    viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+    <path
+      d="M9.146 5.146a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zm-5 0a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 1 1 .708.708l-.647.646.647.646a.5.5 0 1 1-.708.708L5.5 7.207l-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zM10 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
+  </svg>
+</div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { map } from "rxjs/operators";
+import { combineAll, map } from "rxjs/operators";
 import { Observable } from 'rxjs';
 
 @Injectable({ 
@@ -42,6 +42,12 @@ export class GamesService {
     return this.http.get(url);
   }
 
+  //obtener juegos
+  GetGames(){ 
+    const url = 'http://localhost:3600/getGames';
+    return this.http.get(url);
+  }
+
   //crear usuarios
   SetUsers(name: string, last_name:string, user:string, email: string, pass: string, bio: string, fecha: string){
     const url = 'http://localhost:3600/setUsers'
@@ -79,13 +85,14 @@ export class GamesService {
   }
 
   //crear publicaciones
-  SetPost(user:number, juego:number, fecha:string, cuerpo:string){
+  SetPost(user:number, juego:string, fecha:string, cuerpo:string){
     const url = 'http://localhost:3600/setPosts'
+    console.log(user, juego, fecha, cuerpo)
     return this.http.post(
       url, 
       {
         'id_usuario': user,
-        'id_juego': juego,
+        'juego': juego,
         'fecha': fecha,
         'comentario':cuerpo
       },
