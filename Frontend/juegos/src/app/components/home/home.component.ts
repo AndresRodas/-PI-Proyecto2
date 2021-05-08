@@ -20,7 +20,6 @@ import { isNullOrUndefined } from 'util';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  @ViewChild('newComment') newCom;
 
   SearchUser: string = ''
   SearchGame: string = ''
