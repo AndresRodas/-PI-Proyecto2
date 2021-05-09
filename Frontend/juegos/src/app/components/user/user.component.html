@@ -32,11 +32,33 @@
 
 <body><br><br><br><br>
 
+
     <div class="container mt-2 mb-5">
         <div class="card bg-light">
             <!-- header -->
             <div class="card-header">
-                <h1><b>Mi Biblioteca</b></h1>
+                <h1><b> {{User.nombre +' '+ User.apellido}}</b> - ({{User.username}}) </h1>
+            </div>
+            <!-- body -->
+            <div class="card-body">
+                <h2><b>Correo electronico:</b> {{User.correo}}</h2>
+                <h2><b>Fecha de Nacimiento:</b> {{User.fecha.split('T',1)}}</h2>
+                
+                <div class="card-body">
+                    <h3>Biografía: </h3>
+                    <p>{{User.biografia}}</p>
+                </div>
+            </div>
+        </div>
+    </div><br><br>
+
+
+
+    <div class="container mt-2 mb-5">
+        <div class="card bg-light">
+            <!-- header -->
+            <div class="card-header">
+                <h1><b>Biblioteca</b></h1>
             </div>
             <!-- body -->
             <div class="card-body">
@@ -70,7 +92,7 @@
                         </div>
                         
                     </div>
-
+ 
                 </div>
             </div>
         </div>

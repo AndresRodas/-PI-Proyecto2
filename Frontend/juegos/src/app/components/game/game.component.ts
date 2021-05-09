@@ -33,7 +33,7 @@ export class GameComponent implements OnInit {
   }
   Consola: string = ''
 
-  constructor(public GameService: GamesService, private activedRoute: ActivatedRoute, private router: Router) { }
+  constructor(public GameService: GamesService, private activedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     //obteniendo el parametro

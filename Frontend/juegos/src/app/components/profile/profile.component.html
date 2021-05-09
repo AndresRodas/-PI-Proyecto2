@@ -1,61 +1,64 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
-    <a [routerLink]="['/home']" class="navbar-brand" >INICIO</a>
-    <button [routerLink]="['/home']" class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a (click)="ToGames()" class="nav-link" >Juegos<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a (click)="ToUsers()" class="nav-link" >Usuarios<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a (click)="ToLibrary()" class="nav-link" >Biblioteca<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a (click)="ToProfile()" class="nav-link" >Mi Perfil<span class="sr-only">(current)</span></a>
-        </li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="background-color: #e3f2fd;">
+  <a [routerLink]="['/home']" class="navbar-brand">INICIO</a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a [routerLink]="['/games']" type="button" class="btn btn-outline-primary " href="#">Juegos<span
+            class="sr-only">(current)</span></a>
+      </li>&nbsp;&nbsp;
+      <li class="nav-item ">
+        <a [routerLink]="['/users']" type="button" class="btn btn-outline-success" href="#">Usuarios<span
+            class="sr-only">(current)</span></a>
+      </li>&nbsp;&nbsp;
+      <li class="nav-item ">
+        <a [routerLink]="['/library']" class="btn btn-outline-info" href="#">Biblioteca<span
+            class="sr-only">(current)</span></a>
+      </li>&nbsp;&nbsp;
+      <li class="nav-item ">
+        <a [routerLink]="['/profile']" class="btn btn-outline-warning" href="#">Mi Perfil<span
+            class="sr-only">(current)</span></a>
+      </li>&nbsp;&nbsp;
+      <li class="nav-item ">
+        <a [routerLink]="['/']" class="btn btn-outline-danger" href="#">Salir<span class="sr-only">(current)</span></a>
+      </li>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <p class="h3 row justify-content-center">RetroGames</p>
+    </ul>
 
-        <li class="nav-item active">
-          <a (click)="Logout()" class="nav-link" >Salir<span class="sr-only">(current)</span></a>
-        </li>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <h2>RetroGames</h2>
-      </ul>
-    </div>
-  </nav>
+  </div>
+</nav>
 
-  
+<body>
+
   <div class="card" style="width: 24rem; margin-left:460px;">
     <div class="card-body">
-        <h2  class="card-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Perfil de Usuario </h2>
-      </div>
-    <img src="https://flyclipart.com/thumb2/user-icon-png-pnglogocom-133466.png" class="card-img-top" width="100" height="200">
-    
+      <h2 class="card-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Perfil de Usuario </h2>
+    </div>
+    <img src="https://flyclipart.com/thumb2/user-icon-png-pnglogocom-133466.png" class="card-img-top" width="100"
+      height="200">
+
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Nombre: </li>
-      <input [(ngModel)]="this.user.nombre"  type="text">
+      <input [(ngModel)]="this.user.nombre" type="text">
       <li class="list-group-item">Apellido: </li>
-      <input [(ngModel)]="this.user.apellido"  type="text">
+      <input [(ngModel)]="this.user.apellido" type="text">
       <li class="list-group-item">Username: </li>
-      <input [(ngModel)]="this.user.username"  type="text">
+      <input [(ngModel)]="this.user.username" type="text">
       <li class="list-group-item">Correo: </li>
-      <input [(ngModel)]="this.user.correo"  type="text">
+      <input [(ngModel)]="this.user.correo" type="text">
       <li class="list-group-item">Contraseña: </li>
-      <input [(ngModel)]="this.user.password"  type="password">
+      <input [(ngModel)]="this.user.password" type="password">
       <li class="list-group-item">Fecha de Nacimiento: {{this.user.fecha.split('T',1)}}</li>
       <li class="list-group-item">Cambiar Fecha</li>
       <input [(ngModel)]="this.user.fecha" type="date" placeholder="1990-01-01">
       <li class="list-group-item">Biografía</li>
-      <textarea [(ngModel)]="this.user.biografia" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      <textarea [(ngModel)]="this.user.biografia" class="form-control" id="exampleFormControlTextarea1"
+        rows="3"></textarea>
     </ul>
     <div class="card-body">
-        <button (click)="Modificar()" type="button" class="btn btn-info">Modificar Datos</button>
+      <button (click)="Modificar()" type="button" class="btn btn-info">Modificar Datos</button>
     </div>
-  </div><br><br><br><br><br>
-  
-  
+  </div><br><br><br>
+
+</body>

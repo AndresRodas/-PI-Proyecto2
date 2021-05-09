@@ -47,6 +47,11 @@ export class GamesService {
     const url = 'http://localhost:3600/getGames';
     return this.http.get(url);
   }
+  //obtener biblioteca
+  GetLibrary(){ 
+    const url = 'http://localhost:3600/getLibrary';
+    return this.http.get(url);
+  }
 
   //obtener juego
   GetGame(id:number){ 

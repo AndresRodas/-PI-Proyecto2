@@ -12,27 +12,50 @@ import { Library } from 'src/app/models/library.interface';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router'
 import { isNullOrUndefined } from 'util';
 
-
 @Component({
-  selector: 'app-library',
-  templateUrl: './library.component.html',
-  styleUrls: ['./library.component.css']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-export class LibraryComponent implements OnInit {
+export class UserComponent implements OnInit {
 
+  id_user: number
   Biblioteca: Library[] = []
   Juegos: Game[] = []
-  User: Usuario
+  User: Usuario = {
+    id: 0,
+    nombre: '',
+    apellido: '',
+    username: '',
+    correo: '',
+    password: '',
+    biografia: '',
+    fecha: ''
+  }
 
-  constructor(public GameService: GamesService) { }
+  constructor(public GameService: GamesService, private activedRoute: ActivatedRoute) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
+    //obteniendo el parametro
+    this.id_user = this.activedRoute.snapshot.params.id;
     //llenando usuario
-    this.User = this.getCurrentUser('UsuarioLogeado')
-    //llenado de juegos
-    this.LlenarJuegos()
-    //llenado de biblioteca
+    this.LlenarUsuario()
+    //llenando biblioteca de usuario
     this.LlenarBiblioteca()
+    //llenando juegos
+    this.LlenarJuegos()
+  }
+
+  LlenarUsuario() {
+    //llenando usuario
+    this.GameService.GetUsers().subscribe((res: Usuario[]) => {
+      //recorriendo los usuarios
+      for (var us of res) {
+        if (us.id == this.id_user) {
+          this.User = us
+        }
+      }
+    })
   }
 
   LlenarBiblioteca() {
@@ -40,7 +63,7 @@ export class LibraryComponent implements OnInit {
     this.GameService.GetLibrary().subscribe((res: Library[]) => {
       //recorriendo las biblios
       for (var lib of res) {
-        if (lib.id_usuario == this.User.id) {
+        if (lib.id_usuario == this.id_user) {
           //add bilbiotecas
           this.Biblioteca.push(lib)
         }
@@ -56,15 +79,5 @@ export class LibraryComponent implements OnInit {
     })
   }
 
-  //get Storage
-  getCurrentUser(storage: string) {
-    let userCurrent = localStorage.getItem(storage)
-    if (!isNullOrUndefined(userCurrent)) {
-      let user_json = JSON.parse(userCurrent)
-      return user_json
-    } else {
-      return null
-    }
-  }
 
 }

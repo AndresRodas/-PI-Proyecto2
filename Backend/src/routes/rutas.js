@@ -143,6 +143,19 @@ router.get('/getGam:nombre', async (req, res) => {
         }
     });
 });
+//get biblioteca
+router.get('/getLibrary', async (req, res) => {
+    const sql = `
+    select * from biblioteca
+    ` 
+    BD.query(sql,(err,rows,fields) => {
+        if(!err){
+            res.json(rows);
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        }
+    });
+});
 
 
 

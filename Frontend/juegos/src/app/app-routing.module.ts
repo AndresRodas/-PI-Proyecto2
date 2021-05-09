@@ -12,6 +12,7 @@ import { LibraryComponent } from './components/library/library.component'
 import { ProfileComponent } from './components/profile/profile.component'
 import { UsersComponent } from './components/users/users.component'
 import { GameComponent } from './components/game/game.component'
+import { UserComponent } from './components/user/user.component';
 
 //aqui se colocan las rutas!
 const routes: Routes = [
@@ -42,6 +43,9 @@ const routes: Routes = [
   }, {
     path: 'users',
     component: UsersComponent
+  }, {
+    path: 'user/:id',
+    component: UserComponent
   }
 ];
 
