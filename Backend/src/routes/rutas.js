@@ -89,6 +89,65 @@ router.get('/getGames', async (req, res) => {
         }
     });
 });
+//get consolas
+router.get('/getConsola', async (req, res) => {
+    BD.query(`
+    select * from consola
+    `,(err,rows,fields) => {
+        if(!err){
+            res.json(rows);
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        }
+    });
+});
+//get juego
+router.get('/getJuego:id', async (req, res) => {
+    const { id } = req.params;
+    const sql = `
+    select * from juego where id = ?
+    `
+    BD.query(sql,[id],(err,rows,fields) => {
+        if(!err){
+            res.json(rows);
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        }
+    });
+});
+//get consola especifica
+router.get('/getCon:nombre', async (req, res) => {
+    const { nombre } = req.params;
+    const sql = `
+    select * from consola where nombre = ?
+    ` 
+    BD.query(sql,[nombre],(err,rows,fields) => {
+        if(!err){
+            res.json(rows);
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        }
+    });
+});
+//get juego especifico
+router.get('/getGam:nombre', async (req, res) => {
+    const { nombre } = req.params;
+    const sql = `
+    select * from juego where nombre = ?
+    ` 
+    BD.query(sql,[nombre],(err,rows,fields) => {
+        if(!err){
+            res.json(rows);
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        }
+    });
+});
+
+
+
+
+
 
 //post usuarios
 router.post('/setUsers', async (req, res) => {
@@ -139,6 +198,22 @@ router.post('/setPosts', async (req, res) => {
         }  
     });
 })
+//post biblioteca
+router.post('/setLibrary', async (req, res) => {
+    const { id_usuario, id_juego, puntuacion, opinion  } = req.body;
+    const query = `
+    insert into biblioteca (id_usuario, id_juego, puntuacion, opinion)
+    values(?,?,?,?)
+    `;
+    BD.query(query,[id_usuario, id_juego, puntuacion, opinion ],(err,rows,fields) => {
+        if(!err){
+            res.json({Status: 'biblioteca agregada!'});
+        } else{
+            console.log('Error al hacer consulta: '+err)
+        }  
+    });
+})
+
 
 
 //UPDATE MYSQL

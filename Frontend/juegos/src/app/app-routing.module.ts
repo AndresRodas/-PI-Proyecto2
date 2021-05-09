@@ -11,6 +11,7 @@ import { GamesComponent } from './components/games/games.component'
 import { LibraryComponent } from './components/library/library.component'
 import { ProfileComponent } from './components/profile/profile.component'
 import { UsersComponent } from './components/users/users.component'
+import { GameComponent } from './components/game/game.component'
 
 //aqui se colocan las rutas!
 const routes: Routes = [
@@ -29,7 +30,10 @@ const routes: Routes = [
   }, {
     path: 'games',
     component: GamesComponent
-  }, {
+  },{
+    path: 'game/:id',
+    component: GameComponent
+  },{
     path: 'library',
     component: LibraryComponent
   }, {

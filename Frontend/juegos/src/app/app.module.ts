@@ -15,7 +15,7 @@ import { GamesComponent } from './components/games/games.component';
 import { UsersComponent } from './components/users/users.component';
 import { LibraryComponent } from './components/library/library.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { TestComponent } from './components/test/test.component';
+import { GameComponent } from './components/game/game.component';
 
 @NgModule({  
   declarations: [
@@ -28,7 +28,7 @@ import { TestComponent } from './components/test/test.component';
     UsersComponent,
     LibraryComponent,
     ProfileComponent,
-    TestComponent  
+    GameComponent  
   ],
   imports: [
     BrowserModule,

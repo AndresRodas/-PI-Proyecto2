@@ -44,27 +44,25 @@
 <body><br><br><br><br>
 
 
-
-
-
-
-    <div class="container mt-2">
+    <div *ngFor="let con of Consolas" class="container mt-2 mb-5">
         <div class="card bg-light">
             <!-- header -->
             <div class="card-header">
-                <h2><b>SNES</b></h2>
+                <h2><b>{{con.nombre}}</b></h2>
             </div>
             <!-- body -->
             <div class="card-body">
                 <div class="row">
                     <!-- contenido -->
-                    <div class="col-sm" style="width: 20rem;">
-                        <div class="card-header">
-                            <h3><b>Super Mario Bros 3</b></h3>
-                        </div>
-                        <div class="card-body">
-                            <img [src]="img" class="rounded mx-auto d-block mt-2 mb-4" style="width: 30rem;" >
-                            <button class="btn btn-primary d-block mx-auto">Ver más información</button>
+                    <div *ngFor="let game of Games" >
+                        <div *ngIf="game.id_consola == con.id" class="col-xl" style="width: 30rem;">
+                            <div class="card-header">
+                                <h3><b>{{game.nombre}}</b></h3>
+                            </div>
+                            <div class="card-body">
+                                <img [src]="game.cartucho" class="rounded mx-auto d-block mt-2 mb-4" style="width: 15rem;" >
+                                <button [routerLink]="['/game/',game.id]" class="btn btn-primary d-block mx-auto">Ver más información</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -74,4 +72,13 @@
 
 
 <br><br>
-</body>
+</body><br><br><br><br>
+<div *ngIf="this.Consolas.length == 0 || this.Games.length == 0" class="row justify-content-center vh-10">
+    <p class=" h1 text-muted">Sin Resultados...</p>&nbsp;&nbsp;&nbsp;&nbsp;
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-emoji-dizzy"
+      viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+      <path
+        d="M9.146 5.146a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zm-5 0a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 1 1 .708.708l-.647.646.647.646a.5.5 0 1 1-.708.708L5.5 7.207l-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zM10 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
+    </svg>
+  </div>

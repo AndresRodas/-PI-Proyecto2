@@ -48,6 +48,30 @@ export class GamesService {
     return this.http.get(url);
   }
 
+  //obtener juego
+  GetGame(id:number){ 
+    const url = 'http://localhost:3600/getJuego'+id;
+    return this.http.get(url);
+  }
+
+  //obtener consolas
+  GetConsolas(){ 
+    const url = 'http://localhost:3600/getConsola';
+    return this.http.get(url);
+  }
+  //obtener consola especifica
+  GetConsola(nombre:string){ 
+    const url = 'http://localhost:3600/getCon'+nombre;
+    return this.http.get(url);
+  }
+  //obtener juego
+  GetJuego(nombre:string){ 
+    const url = 'http://localhost:3600/getGam'+nombre;
+    return this.http.get(url);
+  }
+
+
+
   //crear usuarios
   SetUsers(name: string, last_name:string, user:string, email: string, pass: string, bio: string, fecha: string){
     const url = 'http://localhost:3600/setUsers'
@@ -95,6 +119,24 @@ export class GamesService {
         'juego': juego,
         'fecha': fecha,
         'comentario':cuerpo
+      },
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data => data))
+  }
+
+  //crear Bilbioteca
+  SetLibrary(id_usuario:number, id_juego:number, puntuacion:number, opinion:string){
+    const url = 'http://localhost:3600/setLibrary'
+    console.log(id_usuario, id_juego, puntuacion, opinion)
+    return this.http.post(
+      url, 
+      {
+        'id_usuario': id_usuario,
+        'id_juego': id_juego,
+        'puntuacion': puntuacion,
+        'opinion':opinion
       },
       {
         headers: this.headers
