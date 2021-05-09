@@ -149,6 +149,24 @@ export class GamesService {
     ).pipe(map(data => data))
   }
 
+  UpdateUser(id:number, nombre: string, apellido: string, username: string, correo: string, password: string, biografia: string, fecha: string){
+    const url = 'http://localhost:3600/upUser/'+id
+    return this.http.put(
+      url,
+      {
+        'nombre': nombre,
+        'apellido': apellido,
+        'username': username,
+        'correo': correo,
+        'password': password,
+        'biografia': biografia,
+        'fecha': fecha
+      },
+      {
+        headers: this.headers
+      }
+    ).pipe(map(data => data))
+  }
 
 
 }

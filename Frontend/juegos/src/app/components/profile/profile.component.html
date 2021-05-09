@@ -30,35 +30,100 @@
 </nav>
 
 <body>
+  <br><br><br><br>
 
-  <div class="card" style="width: 24rem; margin-left:460px;">
-    <div class="card-body">
-      <h2 class="card-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Perfil de Usuario </h2>
-    </div>
-    <img src="https://flyclipart.com/thumb2/user-icon-png-pnglogocom-133466.png" class="card-img-top" width="100"
-      height="200">
+  <div class="container mt-2 justify-content-center" style="width: 50rem;">
+    <div class="card bg-light">
+      <!-- header -->
+      <div class="card-header">
+        <h1><b>Mi Perfil</b></h1>
+      </div>
+      <!-- body -->
+      <div class="card-body">
+        <h2><b>Nombre: </b> {{user.nombre}}</h2>
+        <h2><b>Apellido:</b> {{user.apellido}}</h2>
+        <h2><b>Nombre de Usuario:</b> {{user.username}}</h2>
+        <h2><b>Correo electronico:</b> {{user.correo}}</h2>
+        <h2><b>Fecha de Nacimiento:</b> {{user.fecha.split('T',1)}}</h2>
 
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Nombre: </li>
-      <input [(ngModel)]="this.user.nombre" type="text">
-      <li class="list-group-item">Apellido: </li>
-      <input [(ngModel)]="this.user.apellido" type="text">
-      <li class="list-group-item">Username: </li>
-      <input [(ngModel)]="this.user.username" type="text">
-      <li class="list-group-item">Correo: </li>
-      <input [(ngModel)]="this.user.correo" type="text">
-      <li class="list-group-item">Contraseña: </li>
-      <input [(ngModel)]="this.user.password" type="password">
-      <li class="list-group-item">Fecha de Nacimiento: {{this.user.fecha.split('T',1)}}</li>
-      <li class="list-group-item">Cambiar Fecha</li>
-      <input [(ngModel)]="this.user.fecha" type="date" placeholder="1990-01-01">
-      <li class="list-group-item">Biografía</li>
-      <textarea [(ngModel)]="this.user.biografia" class="form-control" id="exampleFormControlTextarea1"
-        rows="3"></textarea>
-    </ul>
-    <div class="card-body">
-      <button (click)="Modificar()" type="button" class="btn btn-info">Modificar Datos</button>
+        <div class="card-body">
+          <h3>Biografía: </h3>
+          <p>{{user.biografia}}</p>
+        </div>
+      </div>
     </div>
-  </div><br><br><br>
+  </div><br><br>
+
+
+  <div class="container mt-2 justify-content-center" style="width: 50rem;">
+    <div class="card bg-light">
+      <!-- header -->
+      <div class="card-header">
+        <h1><b>Editar Perfil</b></h1>
+      </div>
+      <!-- body -->
+      <div class="card-body">
+        <form action="">
+
+          <div class="row">
+            <div class="col-sm">
+              <h3><b>Nombre: </b></h3>
+              <input [(ngModel)]="this.new_nombre" [ngModelOptions]="{standalone: true}" type="text"
+                placeholder="Nuevo nombre"><br>
+            </div>
+            <div class="col-sm">
+              <h3><b>Apellido:</b></h3>
+              <input [(ngModel)]="this.new_apellido" [ngModelOptions]="{standalone: true}" type="text"
+                placeholder="Nuevo apellido"><br>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-sm">
+              <h3><b>Nombre de Usuario:</b></h3>
+              <input [(ngModel)]="this.new_username" [ngModelOptions]="{standalone: true}" type="text"
+                placeholder="Nuevo usuario"><br>
+            </div>
+            <div class="col-sm">
+              <h3><b>Correo electronico:</b></h3>
+              <input [(ngModel)]="this.new_correo" [ngModelOptions]="{standalone: true}" type="text"
+                placeholder="nuevo@correo.com"><br>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-sm">
+              <h3><b>Contraseña:</b></h3>
+              <input [(ngModel)]="this.new_password1" [ngModelOptions]="{standalone: true}" type="password"
+                placeholder="******"><br>
+            </div>
+            <div class="col-sm">
+              <h3><b>Confirme Contraseña:</b></h3>
+              <input [(ngModel)]="this.new_password2" [ngModelOptions]="{standalone: true}" type="password"
+                placeholder="******"><br>
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-sm">
+              <h3><b>Fecha de Nacimiento:</b></h3>
+              <input [(ngModel)]="this.new_fecha" [ngModelOptions]="{standalone: true}" type="date"
+                placeholder="1990-01-01"><br>
+            </div>
+          </div><br>
+          <div>
+            <h3><b>Biografía:</b></h3><br>
+            <textarea [(ngModel)]="this.new_biografia" [ngModelOptions]="{standalone: true}" class="form-control"
+              id="exampleFormControlTextarea1" rows="3" placeholder="Redacta una nueva biografía aqui..."></textarea>
+
+          </div><br>
+          <div class="container">
+            <button (click)="Modificar()" type="reset" class="btn btn-info ml-5" style="width: 35rem;">Modificar
+              Datos</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div><br><br><br><br>
+
 
 </body>

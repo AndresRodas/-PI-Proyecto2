@@ -31,6 +31,16 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  //validando los datos de entrada
+  ValidarDatos(){
+    if(this.name_in != '' && this.lname_in != '' && this.user_in != '' && this.email_in != '' && this.pass_in != '' && this.pass_in_v != '' && this.bio_in != '' && this.fecha_in != ''){
+      this.VerificarUser()
+    }else{
+      alert('Los campos no pueden estar vacíos!')
+    }
+  }
+
+
   //verificacion de datos de nuevo usuario
   VerificarUser(){
     //consultando users
@@ -79,7 +89,7 @@ export class RegistroComponent implements OnInit {
       this.fecha_in = ''
       this.bio_in = ''
       alert('Usuario registrado con exito!! ')
-      this.router.navigate(['/login'])
+      this.router.navigate(['/'])
     })
     
   }
