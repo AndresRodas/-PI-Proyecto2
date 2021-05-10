@@ -1,0 +1,98 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="background-color: #e3f2fd;">
+    <a [routerLink]="['/home']" class="navbar-brand">INICIO</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a [routerLink]="['/games']" type="button" class="btn btn-outline-primary " href="#">Juegos<span
+                        class="sr-only">(current)</span></a>
+            </li>&nbsp;&nbsp;
+            <li class="nav-item ">
+                <a [routerLink]="['/users']" type="button" class="btn btn-outline-success" href="#">Usuarios<span
+                        class="sr-only">(current)</span></a>
+            </li>&nbsp;&nbsp;
+            <li class="nav-item ">
+                <a [routerLink]="['/library']" class="btn btn-outline-info" href="#">Biblioteca<span
+                        class="sr-only">(current)</span></a>
+            </li>&nbsp;&nbsp;
+            <li class="nav-item ">
+                <a [routerLink]="['/profile']" class="btn btn-outline-warning" href="#">Mi Perfil<span
+                        class="sr-only">(current)</span></a>
+            </li>&nbsp;&nbsp;
+            <li class="nav-item ">
+                <a [routerLink]="['/']" class="btn btn-outline-danger" href="#">Salir<span
+                        class="sr-only">(current)</span></a>
+            </li>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <p class="h3 row justify-content-center">RetroGames</p>
+        </ul>
+        <form class="form-inline">
+            <input class="form-control mr-sm-1" type="search" placeholder="Filtrar Consola" aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <form class="form-inline">
+            <input class="form-control mr-sm-1" type="search" placeholder="Filtrar Juego" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+<body><br><br><br><br>
+
+    <div class="container mt-2">
+        <div class="card bg-light">
+            <!-- header -->
+            <div class="card-header">
+                <h1><b>{{Juego.nombre}} </b>- {{Consola}}</h1>
+                <h2>Fecha de Lanzamiento: {{Juego.fecha.split('T',1)}}</h2>
+            </div>
+            <!-- body -->
+            <div class="card-body">
+                <img [src]="Juego.cartucho" class="rounded mx-auto d-block mt-2 mb-4" style="width: 30rem;"><br><br>
+                <div class="card bg-secondary">
+                    <h3 class="text-white mr-4 ml-4 mt-4">{{Juego.descripcion}}</h3><br>
+
+                </div><br><br>
+
+                <form action="">
+                    <div class="card-footer bg-light container mt-2">
+                        <div class="mb-3">
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="Opinion"
+                                [ngModelOptions]="{standalone: true}"
+                                placeholder="Redacta una opinión acerca del juego..."></textarea>
+                        </div>
+                            <select #valor class="form-select-lg mb-3" aria-label=".form-select-lg example">
+                                <option selected value="0">Seleccione una valoración...</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            <button (click)="GuardarJuego(valor.value)" class="btn btn-primary d-block mx-auto"
+                                type="reset">Agregar a Biblioteca</button><br>
+    
+                    </div>
+                </form>
+
+                
+
+
+            </div>
+
+
+
+
+
+        </div>
+    </div><br><br>
+
+
+
+</body>

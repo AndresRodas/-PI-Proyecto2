@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
-<<<<<<< Updated upstream
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { map } from "rxjs/operators";
-=======
-import { HttpClient, HttpHeaders } from "@angular/common/http"; 
 import { combineAll, map } from "rxjs/operators";
->>>>>>> Stashed changes
 import { Observable } from 'rxjs';
 
 @Injectable({ 
@@ -19,12 +14,12 @@ export class GamesService {
     "Content-Type": "application/json"
   })
   
+  //Obtener usuarios
   GetUsers(){
     const url = 'http://localhost:3600/getUsers';
     return this.http.get(url);
   }
-<<<<<<< Updated upstream
-=======
+
   //obtener publicaciones
   GetPosts(){ 
     const url = 'http://localhost:3600/getPosts';
@@ -255,7 +250,5 @@ export class GamesService {
     const url = 'http://localhost:3600/DeleteGame/'+id
     return this.http.delete(url)
   }
-
->>>>>>> Stashed changes
 
 }

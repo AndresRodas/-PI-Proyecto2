@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { from } from 'rxjs';
+//import { from } from 'rxjs';
 
 //importar a mano!
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-<<<<<<< Updated upstream
-=======
+
 import { RegistroComponent } from './components/registro/registro.component'
 import { RecuperarComponent } from './components/recuperar/recuperar.component'
 import { GamesComponent } from './components/games/games.component'
@@ -20,18 +19,10 @@ import { CrudUsersComponent } from './components/crud-users/crud-users.component
 import { CrudGamesComponent } from './components/crud-games/crud-games.component';
 import { RestablecerComponent } from './components/restablecer/restablecer.component';
 
->>>>>>> Stashed changes
 
 //aqui se colocan las rutas!
 const routes: Routes = [
   {
-<<<<<<< Updated upstream
-    path:'home', 
-    component:HomeComponent
-  },{
-    path:'login',
-    component: LoginComponent
-=======
     path:'', 
     component:LoginComponent
   }, {
@@ -73,12 +64,13 @@ const routes: Routes = [
   }, {
     path: 'CRUD/games',
     component: CrudGamesComponent
->>>>>>> Stashed changes
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: 
+  [
+    RouterModule.forRoot(routes,{useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

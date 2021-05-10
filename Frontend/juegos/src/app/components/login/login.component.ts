@@ -25,23 +25,6 @@ export class LoginComponent implements OnInit {
 
   constructor(public LoginService: GamesService, private router: Router) { }
 
-<<<<<<< Updated upstream
-  Ingresar():void{
-    this.LoginService.GetUsers().subscribe((res:Usuario[])=>{
-      console.log(res)
-
-    })
-  }
-  NewUser():void{
-    this.LoginService.GetUsers().subscribe((res:Usuario[])=>{
-      console.log(res)
-
-    })
-  }
-
-  ngOnInit(): void { 
-    //this.Ingresar()
-=======
   //funcion para ingresar usuario
   Ingresar(): void {
 
@@ -109,8 +92,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
->>>>>>> Stashed changes
+    
   }
 
 }

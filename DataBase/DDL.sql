@@ -145,10 +145,7 @@ values (4,1,'Yo pasaba horas jugandolo tambien jaja'),
        (2,6,'Me gusta mas Final Fantasy :v'),
        (3,6,'no lo jugué aun, el primero que jugué fue the ocarina of zelda :(');
 
-<<<<<<< Updated upstream:DataBase/DDL_Practicas_iniciales.sql
-describe usuario;
-select * from usuario;
-=======
+
 #Consultas
 #consulta 1
 select u.nombre usuario, count(bi.id_juego) juegos from biblioteca bi
@@ -168,4 +165,3 @@ select j.nombre juego, c.nombre consola, avg(bi.puntuacion) promedio from biblio
 select nombre juego, fecha from juego
     order by fecha;
 
->>>>>>> Stashed changes:DataBase/DDL.sql

@@ -3,38 +3,147 @@ const router = Router();
 const BD = require('../config/configbd');
 var nodemailer = require('nodemailer')
 
-//test coneccion mysql
-//GET MYSQL
-router.get('/', async (req, res) => {
-    BD.query('select * from persona',(err,rows,fields) => {
-        if(!err){
-            res.json(rows);
-        } else{
-            console.log('Error al hacer consulta: '+err)
-        }
-    });
-});
+//get usuarios
 router.get('/getUsers', async (req, res) => {
-    BD.query('select * from usuario',(err,rows,fields) => {
-        if(!err){
+    BD.query('select * from usuario', (err, rows, fields) => {
+        if (!err) {
             res.json(rows);
-        } else{
-            console.log('Error al hacer consulta: '+err)
+        } else {
+            console.log('Error al hacer consulta: ' + err)
         }
     });
 });
-router.get('/:id', async (req, res) => {
+//get publicaciones
+router.get('/getPosts', async (req, res) => {
+    BD.query(`
+    select pu.id, us.username user, ju.nombre game, pu.fecha date, pu.comentario comment from publicacion pu
+    inner join usuario us on pu.id_usuario = us.id
+    inner join juego ju on pu.id_juego = ju.id
+    order by pu.fecha desc
+    `, (err, rows, fields) => {
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log('Error al hacer consulta: ' + err)
+        }
+    });
+});
+//get publicaciones filtradas por usuario
+router.get('/getPubliUsers:username', async (req, res) => {
+    const { username } = req.params;
+    const sql = `
+    select pu.id, us.username user, ju.nombre game, pu.fecha date, pu.comentario comment from publicacion pu
+    inner join usuario us on pu.id_usuario = us.id
+    inner join juego ju on pu.id_juego = ju.id
+    where us.username = ?
+    order by pu.fecha desc
+    `
+    BD.query(sql, [username], (err, rows, fields) => {
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log('Error al hacer consulta: ' + err)
+        }
+    });
+});
+//get publicaciones filtradas por juego
+router.get('/getPubliGames:nombre', async (req, res) => {
+    const { nombre } = req.params;
+    const sql = `
+    select pu.id, us.username user, ju.nombre game, pu.fecha date, pu.comentario comment from publicacion pu
+    inner join usuario us on pu.id_usuario = us.id
+    inner join juego ju on pu.id_juego = ju.id
+    where ju.nombre = ?
+    order by pu.fecha desc
+    `
+    BD.query(sql, [nombre], (err, rows, fields) => {
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log('Error al hacer consulta: ' + err)
+        }
+    });
+});
+//get comentarios
+router.get('/getComments', async (req, res) => {
+    BD.query(`
+    select us.username user, co.comentario comment, co.id_publicacion post  from comentario co
+    inner join usuario us on co.id_usuario = us.id
+    `, (err, rows, fields) => {
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log('Error al hacer consulta: ' + err)
+        }
+    });
+});
+//get juegos
+router.get('/getGames', async (req, res) => {
+    BD.query(`
+    select * from juego
+    `, (err, rows, fields) => {
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log('Error al hacer consulta: ' + err)
+        }
+    });
+});
+//get consolas
+router.get('/getConsola', async (req, res) => {
+    BD.query(`
+    select * from consola
+    `, (err, rows, fields) => {
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log('Error al hacer consulta: ' + err)
+        }
+    });
+});
+//get juego
+router.get('/getJuego:id', async (req, res) => {
     const { id } = req.params;
-    BD.query('select * from persona where id = ?', [id],(err,rows,fields) => {
-        if(!err){
-            res.json(rows[0]);
-        } else{
-            console.log('Error al hacer consulta: '+err)
+    const sql = `
+    select * from juego where id = ?
+    `
+    BD.query(sql, [id], (err, rows, fields) => {
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log('Error al hacer consulta: ' + err)
         }
     });
 });
-<<<<<<< Updated upstream
-=======
+//get consola especifica
+router.get('/getCon:nombre', async (req, res) => {
+    const { nombre } = req.params;
+    const sql = `
+    select * from consola where nombre = ?
+    `
+    BD.query(sql, [nombre], (err, rows, fields) => {
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log('Error al hacer consulta: ' + err)
+        }
+    });
+});
+//get juego especifico
+router.get('/getGam:nombre', async (req, res) => {
+    const { nombre } = req.params;
+    const sql = `
+    select * from juego where nombre = ?
+    `
+    BD.query(sql, [nombre], (err, rows, fields) => {
+        if (!err) {
+            res.json(rows);
+        } else {
+            console.log('Error al hacer consulta: ' + err)
+        }
+    });
+});
+
 //get biblioteca
 router.get('/getLibrary', async (req, res) => {
     const sql = `
@@ -47,7 +156,7 @@ router.get('/getLibrary', async (req, res) => {
             console.log('Error al hacer consulta: ' + err)
         }
     });
-})
+
 //get query1
 router.get('/query1', async (req, res) => {
     const sql = `
@@ -110,27 +219,27 @@ router.get('/query4', async (req, res) => {
     });
 })
 
->>>>>>> Stashed changes
 
-//POST MYSQL
-router.post('/add', async (req, res) => {
-    const { nombre, apellido, genero} = req.body;
+
+
+//post usuarios
+router.post('/setUsers', async (req, res) => {
+    const { name, last_name, user, email, pass, bio, fecha } = req.body;
+    console.log(name, last_name, user, email, pass, bio, fecha)
     const query = `
-    insert into persona(nombre,apellido,genero)
-    values(?,?,?);
+    insert into usuario (nombre,apellido,username,correo,password,biografia,fecha)
+    values(?,?,?,?,?,?,?)
     `;
-    BD.query(query,[nombre, apellido, genero],(err,rows,fields) => {
-        if(!err){
-            res.json({Status: 'Persona '+nombre+' agregada!'});
-        } else{
-            console.log('Error al hacer consulta: '+err)
-        }  
+    BD.query(query, [name, last_name, user, email, pass, bio, fecha], (err, rows, fields) => {
+        if (!err) {
+            res.json({ Status: 'Persona ' + name + ' agregada!' });
+        } else {
+            console.log('Error al hacer consulta: ' + err)
+        }
     });
 
 })
 
-<<<<<<< Updated upstream
-=======
 //post comentarios
 router.post('/setComments', async (req, res) => {
     const { id_usuario, id_publicacion, comentario } = req.body;
@@ -177,6 +286,7 @@ router.post('/setLibrary', async (req, res) => {
         }
     });
 })
+
 //post juegos
 router.post('/setGame', async (req, res) => {
     const { id_consola, nombre, descripcion, cartucho, fecha } = req.body;
@@ -194,7 +304,7 @@ router.post('/setGame', async (req, res) => {
 })
 
 
->>>>>>> Stashed changes
+
 
 //UPDATE MYSQL
 router.put("/:id", async (req, res) => {
@@ -203,29 +313,20 @@ router.put("/:id", async (req, res) => {
     const query = `
         UPDATE persona
         SET nombre = ?, apellido = ?, genero = ? WHERE id = ?
-    `; 
+    `;
     BD.query(query, [nombre, apellido, genero, id], (err, rows, fields) => {
-        if(!err){
-            res.json({Status: 'Persona '+nombre+' editada!'});
-        } else{
-            console.log('Error al hacer consulta: '+err)
-        } 
+        if (!err) {
+            res.json({ Status: 'Persona ' + nombre + ' editada!' });
+        } else {
+            console.log('Error al hacer consulta: ' + err)
+        }
     })
 })
 
-//DELETE MYSQL
-router.delete("/:id", async (req, res) => {
+//update usuario
+router.put('/upUser/:id', async (req, res) => {
+    const { nombre, apellido, username, correo, password, biografia, fecha } = req.body;
     const { id } = req.params;
-<<<<<<< Updated upstream
-    const query = 'delete from persona where id = ?';
-    BD.query(query, [id], (err, rows, fields) => {
-        if(!err){
-            res.json({ "msg": "Persona eliminada" })
-        } else{
-            console.log('Error al hacer consulta: '+err)
-        } 
-    }); 
-=======
     const query = `
         UPDATE usuario
         SET nombre = ?, apellido = ?, username = ?, correo = ?, password = ?, biografia = ?, fecha = ? 
@@ -235,10 +336,9 @@ router.delete("/:id", async (req, res) => {
         if (!err) {
             res.json({ Status: 'Usuario ' + nombre + ' editado!' });
         } else {
-            console.log(id, nombre, apellido, username, correo, password, biografia, fecha)
->>>>>>> Stashed changes
-
-    
+            console.log('Error al hacer consulta: ' + err)
+        }
+    })
 })
 
 //update juego
@@ -279,41 +379,6 @@ router.put('/respass/:id', async (req, res) => {
 
 
 
-
-//enviar correo
-router.post('/enviarcorreo', function(req, res){
-    const { name, lname, email } = req.body;
-    var smtpTransport = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-            user: 'bastianperis12@gmail.com',
-            pass: 'hesoyam666'
-        }
-<<<<<<< Updated upstream
-    })
-    var output = '<strong><h1>CORREO DE CONFIRMACION</h1> \n\nHola <h3>'+name+' '+lname+'</h3>\nTu correo electronico ha sido confirmado en <h3>GTSales!!</h3>\nIngresa al siguiente link: http://localhost:4200/login para ingresar con tu correo electronico y contraseña.</strong>'
-    var mailOptions = {
-        from: 'GTSales',
-        to: email,
-        subject: 'Confirmacion',
-        text: 'Correo de confirmacion.',
-        html: output
-    }
-    smtpTransport.sendMail(mailOptions, function(error, respuesta){
-        if(error){
-            console.log(error)
-        }else{
-            res.send('Mensaje enviado!!')
-        }
-    })
-})
-
- 
-=======
-    });
-})
->>>>>>> Stashed changes
-
 //DELETE user
 router.delete("/DeleteUser/:id", async (req, res) => {
     const { id } = req.params;
@@ -327,8 +392,8 @@ router.delete("/DeleteUser/:id", async (req, res) => {
     });
 })
 
-<<<<<<< Updated upstream
-=======
+//DELETE MYSQL
+
 //delete game
 router.delete("/DeleteGame/:id", async (req, res) => {
     const { id } = req.params;
@@ -341,7 +406,7 @@ router.delete("/DeleteGame/:id", async (req, res) => {
         }
     });
 })
->>>>>>> Stashed changes
 
+})
 
 module.exports = router;

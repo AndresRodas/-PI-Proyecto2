@@ -1,0 +1,129 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="background-color: #e3f2fd;">
+  <a [routerLink]="['/home']" class="navbar-brand">INICIO</a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a [routerLink]="['/games']" type="button" class="btn btn-outline-primary " href="#">Juegos<span
+            class="sr-only">(current)</span></a>
+      </li>&nbsp;&nbsp;
+      <li class="nav-item ">
+        <a [routerLink]="['/users']" type="button" class="btn btn-outline-success" href="#">Usuarios<span
+            class="sr-only">(current)</span></a>
+      </li>&nbsp;&nbsp;
+      <li class="nav-item ">
+        <a [routerLink]="['/library']" class="btn btn-outline-info" href="#">Biblioteca<span
+            class="sr-only">(current)</span></a>
+      </li>&nbsp;&nbsp;
+      <li class="nav-item ">
+        <a [routerLink]="['/profile']" class="btn btn-outline-warning" href="#">Mi Perfil<span
+            class="sr-only">(current)</span></a>
+      </li>&nbsp;&nbsp;
+      <li class="nav-item ">
+        <a [routerLink]="['/']" class="btn btn-outline-danger" href="#">Salir<span class="sr-only">(current)</span></a>
+      </li>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <p class="h3 row justify-content-center">RetroGames</p>
+    </ul>
+
+  </div>
+</nav>
+
+<body>
+  <br><br><br><br>
+
+  <div class="container mt-2 justify-content-center" style="width: 50rem;">
+    <div class="card bg-light">
+      <!-- header -->
+      <div class="card-header">
+        <h1><b>Mi Perfil</b></h1>
+      </div>
+      <!-- body -->
+      <div class="card-body">
+        <h2><b>Nombre: </b> {{user.nombre}}</h2>
+        <h2><b>Apellido:</b> {{user.apellido}}</h2>
+        <h2><b>Nombre de Usuario:</b> {{user.username}}</h2>
+        <h2><b>Correo electronico:</b> {{user.correo}}</h2>
+        <h2><b>Fecha de Nacimiento:</b> {{user.fecha.split('T',1)}}</h2>
+
+        <div class="card-body">
+          <h3>Biografía: </h3>
+          <p>{{user.biografia}}</p>
+        </div>
+      </div>
+    </div>
+  </div><br><br>
+
+
+  <div class="container mt-2 justify-content-center" style="width: 50rem;">
+    <div class="card bg-light">
+      <!-- header -->
+      <div class="card-header">
+        <h1><b>Editar Perfil</b></h1>
+      </div>
+      <!-- body -->
+      <div class="card-body">
+        <form action="">
+
+          <div class="row">
+            <div class="col-sm">
+              <h3><b>Nombre: </b></h3>
+              <input [(ngModel)]="this.new_nombre" [ngModelOptions]="{standalone: true}" type="text"
+                placeholder="Nuevo nombre"><br>
+            </div>
+            <div class="col-sm">
+              <h3><b>Apellido:</b></h3>
+              <input [(ngModel)]="this.new_apellido" [ngModelOptions]="{standalone: true}" type="text"
+                placeholder="Nuevo apellido"><br>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-sm">
+              <h3><b>Nombre de Usuario:</b></h3>
+              <input [(ngModel)]="this.new_username" [ngModelOptions]="{standalone: true}" type="text"
+                placeholder="Nuevo usuario"><br>
+            </div>
+            <div class="col-sm">
+              <h3><b>Correo electronico:</b></h3>
+              <input [(ngModel)]="this.new_correo" [ngModelOptions]="{standalone: true}" type="text"
+                placeholder="nuevo@correo.com"><br>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-sm">
+              <h3><b>Contraseña:</b></h3>
+              <input [(ngModel)]="this.new_password1" [ngModelOptions]="{standalone: true}" type="password"
+                placeholder="******"><br>
+            </div>
+            <div class="col-sm">
+              <h3><b>Confirme Contraseña:</b></h3>
+              <input [(ngModel)]="this.new_password2" [ngModelOptions]="{standalone: true}" type="password"
+                placeholder="******"><br>
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-sm">
+              <h3><b>Fecha de Nacimiento:</b></h3>
+              <input [(ngModel)]="this.new_fecha" [ngModelOptions]="{standalone: true}" type="date"
+                placeholder="1990-01-01"><br>
+            </div>
+          </div><br>
+          <div>
+            <h3><b>Biografía:</b></h3><br>
+            <textarea [(ngModel)]="this.new_biografia" [ngModelOptions]="{standalone: true}" class="form-control"
+              id="exampleFormControlTextarea1" rows="3" placeholder="Redacta una nueva biografía aqui..."></textarea>
+
+          </div><br>
+          <div class="container">
+            <button (click)="Modificar()" type="reset" class="btn btn-info ml-5" style="width: 35rem;">Modificar
+              Datos</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div><br><br><br><br>
+
+
+</body>

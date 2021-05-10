@@ -1,0 +1,57 @@
+<body>
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+
+        <div class="container justify-content-center">
+        </div>
+    </nav><br><br>
+
+
+
+    <div class="container mt-5 card " style="width: 35rem;">
+        <div class="row mt-1 md-1 ml-1 mr-1 justify-content-center bg-light">
+
+            <div class="col mb-4 mt-4">
+                <h2><b>RetroGames - Registro</b></h2>
+                <br><br>
+                <form>
+                    <div class="form-group">
+                       
+
+                        <label for="colFormLabelLg">Nombre</label><br>
+                        <input [(ngModel)]="name_in" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="First Name"><br>
+                        <label for="colFormLabelLg">Apellido</label>
+                        <input [(ngModel)]="lname_in" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="Last Name"><br>
+                        <label for="colFormLabelLg" >Username</label>
+                        <input [(ngModel)]="user_in" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control"  placeholder="User"><br>
+                        <label for="colFormLabelLg">Email</label>
+                        <input [(ngModel)]="email_in" [ngModelOptions]="{standalone: true}" type="email"
+                            class="form-control" aria-describedby="emailHelp" placeholder="ejemplo@email.com"><br>
+                        <label for="colFormLabelLg">Pass</label>
+                        <input [(ngModel)]="pass_in" [ngModelOptions]="{standalone: true}" type="password"
+                            class="form-control" placeholder="********"><br>
+                        <label for="colFormLabelLg">Confirm Pass</label>
+                        <input [(ngModel)]="pass_in_v" [ngModelOptions]="{standalone: true}" type="password"
+                            class="form-control" placeholder="********"><br>
+                        <label for="colFormLabelLg">Fecha Nac.</label>
+                        <input [(ngModel)]="fecha_in" [ngModelOptions]="{standalone: true}" type="date"
+                            class="form-control" placeholder="1990-01-01"><br>
+                            <label for="colFormLabelLg">Biografia</label>
+                        <textarea [(ngModel)]="bio_in" [ngModelOptions]="{standalone: true}" class="form-control" 
+                            placeholder="Biografia personal" rows="3"></textarea>
+                    </div>
+                </form>
+                <br>
+                <button (click)="ValidarDatos()" type="submit" class="btn btn-primary btn-block ">Registrar
+                    Usuario</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</body>
