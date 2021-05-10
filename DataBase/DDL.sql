@@ -79,42 +79,42 @@ insert into juego (id_consola,nombre,descripcion,cartucho,fecha)
 values (1,'Pac-Man','Pac Man es un videojuego arcade creado por
 el diseñador de videojuegos Toru Iwatani de la empresa Namco, y
 distribuido por Midway Games al mercado estadounidense a principios
-de los años 1980.','img/pacman.jpg','1980-04-21'),
+de los años 1980.','assets/img/pacman.jpg','1980-04-21'),
        (1,'Space Invaders','Space Invaders es un videojuego
 de arcade diseñado por Toshihiro Nishikado y lanzado
-al mercado en 1978.','img/space.jpg','1978-04-21'),
+al mercado en 1978.','assets/img/space.jpg','1978-04-21'),
         (1,'Asteroids','Asteroids es un popular videojuego arcade
 basado en vectores lanzado en 1979 por Atari.  El objetivo del juego
 es disparar y destruir asteroides evitando chocar contra los
-fragmentos de estos.','img/asteroids.jpg','1979-04-21'),
+fragmentos de estos.','assets/img/asteroids.jpg','1979-04-21'),
        (1,'Pitfall!','Pitfall! es un videojuego de scroll horizontal,
 en el cual el protagonista debe salir de un bosque peligroso,
 esquivando serpientes, saltando cocodrilos y troncos que amenazan con
-aplastarlo.','img/pitfall.jpg','1982-04-21'),
+aplastarlo.','assets/img/pitfall.jpg','1982-04-21'),
        (1,'Breakout','Breakout es un videojuego arcade desarrollado
 por Atari, Inc. y lanzado al mercado el 13 de mayo de 1976. Fue
 creado por Nolan Bushnell y Steve Bristow, influenciados por el
-videojuego de 1972 Pong, también de Atari.','img/breakout.jpg','1972-04-21'),
+videojuego de 1972 Pong, también de Atari.','assets/img/breakout.jpg','1972-04-21'),
        (2,'Super Mario Bros 3','Super Mario Bros 3 un videojuego de
 plataformas para la consola NES, Salió a la venta el 23 de octubre
 de 1988 en Japón y el 12 de febrero de 1990 en Estados Unidos.'
-,'img/supermario3.jpg','1988-10-23'),
+,'assets/img/supermario3.jpg','1988-10-23'),
        (2,'The Legend of Zelda','The Legend of Zelda es un videojuego
 japonés desarrollado y publicado por Nintendo en 1986, y diseñado por Shigeru
-Miyamoto y Takashi Tezuka para la consola NES.','img/zelda.jpg','1986-04-21'),
+Miyamoto y Takashi Tezuka para la consola NES.','assets/img/zelda.jpg','1986-04-21'),
        (2,'Super Mario Bros','Super Mario Bros es un videojuego de
 plataformas, diseñado por Shigeru Miyamoto, lanzado el 13 de septiembre
-de 1985 y producido por la compañía Nintendo','img/supermario.jpg','1985-09-13'),
+de 1985 y producido por la compañía Nintendo','assets/img/supermario.jpg','1985-09-13'),
        (2,'Final Fantasy','Final Fantasy es un videojuego de rol creado por
 Hironobu Sakaguchi, desarrollado y publicado en Japón por Square Co. en 1987;
 y publicado en Estados Unidos por Nintendo of America, Inc. en 1990.',
-        'img/finalfantasy.jpg','1987-04-21'),
+        'assets/img/finalfantasy.jpg','1987-04-21'),
        (2,'Tetris','Tetris es un videojuego de lógica originalmente diseñado y
 programado por Alekséi Pázhitnov en la Unión Soviética.',
-        'img/tetris.jpg','1984-06-06'),
+        'assets/img/tetris.jpg','1984-06-06'),
        (2,'Mega Man','Mega Man, conocido como Rockman en Japón, es un videojuego
 de acción-plataformas de 1987 desarrollado y publicado por Capcom para Nintendo
-Entertainment System.','img/megaman.jpg','1987-04-21');
+Entertainment System.','assets/img/megaman.jpg','1987-04-21');
 
 #Cargando bibliotecas de prueba
 insert into biblioteca (id_usuario, id_juego, puntuacion, opinion)
