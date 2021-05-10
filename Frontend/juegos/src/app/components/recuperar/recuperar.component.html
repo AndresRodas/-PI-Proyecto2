@@ -1,0 +1,36 @@
+<body>
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+
+        <div class="container justify-content-center">
+        </div>
+    </nav><br><br>
+    <div class="container mt-5 card " style="width: 35rem;">
+        <div class="row mt-1 md-1 ml-1 mr-1 justify-content-center bg-light">
+    
+            <div class="col mb-4 mt-4">
+                <h2><b>RetroGames - Recuperación</b></h2>
+                <br>
+                <h4>Para restablecer su contraseña ingrese los siguientes datos:</h4>
+                <br>
+                <form>
+                    <div class="form-group">            
+                        <label for="exampleInputEmail1">Username</label>
+                        <input [(ngModel)]="user_input" [ngModelOptions]="{standalone: true}" type="email" class="form-control"
+                            aria-describedby="emailHelp" placeholder="ExampleUser"><br>
+                        <label for="exampleInputEmail1">Email</label>
+                        <input [(ngModel)]="email_input" [ngModelOptions]="{standalone: true}" type="email" class="form-control"
+                            aria-describedby="emailHelp" placeholder="example@user.com">
+                    </div> 
+                    
+                </form>
+                <br> 
+                    <button (click)="Verificar()" type="submit" class="btn btn-primary btn-block">Verificar</button>
+                    <button [routerLink]="['/']" type="submit" class="btn btn-primary btn-block">Cancelar</button>
+            </div>
+    
+        </div>
+    </div>
+    
+<br><br><br><br>
+<br><br><br>
+</body>

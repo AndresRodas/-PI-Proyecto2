@@ -1,0 +1,165 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="background-color: #e3f2fd;">
+
+    <a [routerLink]="['/admin']" class="navbar-brand">QUERIES</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item ">
+                <a [routerLink]="['/CRUD/users']" type="button" class="btn btn-outline-primary " href="#">CRUD
+                    Usuarios<span class="sr-only">(current)</span></a>
+            </li>&nbsp;&nbsp;
+            <li class="nav-item ">
+                <a [routerLink]="['/CRUD/games']" type="button" class="btn btn-outline-success" href="#">CRUD
+                    Juegos<span class="sr-only">(current)</span></a>
+            </li>&nbsp;&nbsp;
+            <li class="nav-item ">
+                <a [routerLink]="['/']" class="btn btn-outline-danger" href="#">Salir<span
+                        class="sr-only">(current)</span></a>
+            </li>
+
+            <div class="ml-5">
+                <p class="h3 row ml-5">RetroGames - Admin</p>
+            </div>
+
+        </ul>
+    </div>
+</nav>
+
+
+<body><br><br>
+    <div class="container mt-5 bg-light" style="width: 40rem;">
+        <div class="row justify-content-center">
+            <div class="col-10 mt-5 mb-3 mr-2 ml-2">
+                <h2>CREATE User</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="colFormLabelLg">Nombre</label><br>
+                        <input [(ngModel)]="new_nombre" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="First Name"><br>
+                        <label for="colFormLabelLg">Apellido</label>
+                        <input [(ngModel)]="new_apellido" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="Last Name"><br>
+                        <label for="colFormLabelLg">Username</label>
+                        <input [(ngModel)]="new_username" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="User"><br>
+                        <label for="colFormLabelLg">Email</label>
+                        <input [(ngModel)]="new_correo" [ngModelOptions]="{standalone: true}" type="email"
+                            class="form-control" aria-describedby="emailHelp" placeholder="ejemplo@email.com"><br>
+                        <label for="colFormLabelLg">Pass</label>
+                        <input [(ngModel)]="new_pass1" [ngModelOptions]="{standalone: true}" type="password"
+                            class="form-control" placeholder="********"><br>
+                        <label for="colFormLabelLg">Confirm Pass</label>
+                        <input [(ngModel)]="new_pass2" [ngModelOptions]="{standalone: true}" type="password"
+                            class="form-control" placeholder="********"><br>
+                        <label for="colFormLabelLg">Fecha Nac.</label>
+                        <input [(ngModel)]="new_fecha" [ngModelOptions]="{standalone: true}" type="date"
+                            class="form-control" placeholder="1990-01-01"><br>
+                        <label for="colFormLabelLg">Biografia</label>
+                        <textarea [(ngModel)]="new_bio" [ngModelOptions]="{standalone: true}" class="form-control"
+                            placeholder="Biografia personal" rows="3"></textarea>
+                    </div>
+                </form>
+                <button (click)="CreateUser()" type="submit" class="btn btn-primary btn-block">Crear</button>
+            </div>
+        </div><br>
+    </div>
+
+
+    <div class="container mt-5 card bg-light">
+        <div class="row mt-5 mb-3 mr-3 ml-3 justify-content-center">
+            <div class="col-12">
+                <h2>READ Users</h2>
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table table-dark table-striped ">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">NOMBRE</th>
+                                <th scope="col">APELLIDO</th>
+                                <th scope="col">USERNAME</th>
+                                <th scope="col">CORREO</th>
+                                <th scope="col">PASSWORD</th>
+                                <th scope="col">BIOGRAFIA</th>
+                                <th scope="col">FECHA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of Users">
+                                <th scope="row">{{user.id}}</th>
+                                <th scope="row">{{user.nombre}}</th>
+                                <th scope="row">{{user.apellido}}</th>
+                                <th scope="row">{{user.username}}</th>
+                                <th scope="row">{{user.correo}}</th>
+                                <th scope="row">{{user.password}}</th>
+                                <th scope="row">{{user.biografia}}</th>
+                                <th scope="row">{{user.fecha.split('T',1)}}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <button (click)="ReadUsers()" type="submit" class="btn btn-primary btn-block">Refrescar</button>
+            </div>
+        </div><br><br>
+    </div>
+
+    <div class="container bg-light mt-5" style="width: 40rem;" >
+        <div class="row justify-content-center">
+            <div class="col-10 mt-5 mb-3 mr-2 ml-2">
+                <h2>UPDATE Users</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="colFormLabelLg">Id</label><br>
+                        <input [(ngModel)]="up_id" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="Id Usuario"><br>
+                        <label for="colFormLabelLg">Nombre</label><br>
+                        <input [(ngModel)]="up_nombre" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="First Name"><br>
+                        <label for="colFormLabelLg">Apellido</label>
+                        <input [(ngModel)]="up_apellido" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="Last Name"><br>
+                        <label for="colFormLabelLg">Username</label>
+                        <input [(ngModel)]="up_username" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="User"><br>
+                        <label for="colFormLabelLg">Email</label>
+                        <input [(ngModel)]="up_correo" [ngModelOptions]="{standalone: true}" type="email"
+                            class="form-control" aria-describedby="emailHelp" placeholder="ejemplo@email.com"><br>
+                        <label for="colFormLabelLg">Pass</label>
+                        <input [(ngModel)]="up_pass1" [ngModelOptions]="{standalone: true}" type="password"
+                            class="form-control" placeholder="********"><br>
+                        <label for="colFormLabelLg">Confirm Pass</label>
+                        <input [(ngModel)]="up_pass2" [ngModelOptions]="{standalone: true}" type="password"
+                            class="form-control" placeholder="********"><br>
+                        <label for="colFormLabelLg">Fecha Nac.</label>
+                        <input [(ngModel)]="up_fecha" [ngModelOptions]="{standalone: true}" type="date"
+                            class="form-control" placeholder="1990-01-01"><br>
+                        <label for="colFormLabelLg">Biografia</label>
+                        <textarea [(ngModel)]="up_bio" [ngModelOptions]="{standalone: true}" class="form-control"
+                            placeholder="Biografia personal" rows="3"></textarea>
+
+                    </div>
+                </form>
+                <button (click)="UpdateUser()" type="submit" class="btn btn-primary btn-block">Actualizar</button>
+            </div>
+        </div><br>
+    </div>
+
+    <div class="container bg-light mt-5" style="width: 40rem;" >
+        <div class="row justify-content-center">
+            <div class="col-10 mt-4 mb-3 mr-2 ml-2">
+                <h2>DELETE User</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Id usuario a eliminar:</label>
+                        <input [(ngModel)]="del_id" [ngModelOptions]="{standalone: true}" class="form-control"
+                             placeholder="10"><br>
+                    </div>
+                </form>
+                <button (click)="DeleteUser()" type="submit" class="btn btn-primary btn-block">Eliminar</button>
+            </div>
+        </div>
+        <br>    
+    </div>
+    <br><br>
+</body>

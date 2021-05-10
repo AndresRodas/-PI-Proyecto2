@@ -1,7 +1,5 @@
 const mysql = require('mysql');
 const { promisify } = require('util');
-//const { connect } = require('../routes/person-rotes');
-
 
 database = {
     host: 'localhost',
@@ -13,9 +11,7 @@ database = {
     //password: "3887",
     //connectString: "172.17.0.2/ORCLCDB"
 }
-
 const pool = mysql.createPool(database)
-
 pool.getConnection((err,connection)=>{
     if (err){
         if (err.code === 'PROTOCOL_CONNECTION_LOST'){
@@ -32,14 +28,6 @@ pool.getConnection((err,connection)=>{
     console.log('Base de datos conectada!')
     return;
 });
-
-// async function Open(sql, binds, autoCommit) {
-//     let cnn = await oracledb.getConnection(cns);
-//     let result = await cnn.execute(sql, binds, { autoCommit });
-//     cnn.release();
-//     return result;
-// }
-
 
 pool.query = promisify(pool.query);
 module.exports = pool;

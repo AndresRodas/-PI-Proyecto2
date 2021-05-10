@@ -1,0 +1,143 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="background-color: #e3f2fd;">
+
+    <a [routerLink]="['/admin']" class="navbar-brand">QUERIES</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item ">
+                <a [routerLink]="['/CRUD/users']" type="button" class="btn btn-outline-primary " href="#">CRUD
+                    Usuarios<span class="sr-only">(current)</span></a>
+            </li>&nbsp;&nbsp;
+            <li class="nav-item ">
+                <a [routerLink]="['/CRUD/games']" type="button" class="btn btn-outline-success" href="#">CRUD
+                    Juegos<span class="sr-only">(current)</span></a>
+            </li>&nbsp;&nbsp;
+            <li class="nav-item ">
+                <a [routerLink]="['/']" class="btn btn-outline-danger" href="#">Salir<span
+                        class="sr-only">(current)</span></a>
+            </li>
+
+            <div class="ml-5">
+                <p class="h3 row ml-5">RetroGames - Admin</p>
+            </div>
+
+        </ul>
+    </div>
+</nav>
+
+
+<body><br><br>
+    <div class="container mt-5 bg-light" style="width: 40rem;">
+        <div class="row justify-content-center">
+            <div class="col-10 mt-5 mb-3 mr-2 ml-2">
+                <h2>CREATE Game</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="colFormLabelLg">Id Consola</label><br>
+                        <input [(ngModel)]="new_consola" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="3"><br>
+                        <label for="colFormLabelLg">Nombre</label>
+                        <input [(ngModel)]="new_nombre" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="Nombre del Juego"><br>
+                        <label for="colFormLabelLg">Cartucho</label>
+                        <input [(ngModel)]="new_cartucho" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="assets/img/imagen.jpg"><br>
+                        <label for="colFormLabelLg">Fecha Publicación.</label>
+                        <input [(ngModel)]="new_fecha" [ngModelOptions]="{standalone: true}" type="date"
+                            class="form-control" placeholder="1990-01-01"><br>
+                        <label for="colFormLabelLg">Descripción</label>
+                        <textarea [(ngModel)]="new_descripcion" [ngModelOptions]="{standalone: true}" class="form-control"
+                            placeholder="Descripcion del Juego" rows="3"></textarea>
+                    </div>
+                </form>
+                <button (click)="CreateGame()" type="submit" class="btn btn-primary btn-block">Crear</button>
+            </div>
+        </div><br>
+    </div>
+
+
+    <div class="container mt-5 card bg-light">
+        <div class="row mt-5 mb-3 mr-3 ml-3 justify-content-center">
+            <div class="col-12">
+                <h2>READ Games</h2>
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table table-dark table-striped ">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">ID_CONSOLA</th>
+                                <th scope="col">NOMBRE</th>
+                                <th scope="col">DESCRIPCION</th>
+                                <th scope="col">CARTUCHO</th>
+                                <th scope="col">FECHA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let game of Games">
+                                <th scope="row">{{game.id}}</th>
+                                <th scope="row">{{game.id_consola}}</th>
+                                <th scope="row">{{game.nombre}}</th>
+                                <th scope="row">{{game.descripcion}}</th>
+                                <th scope="row">{{game.cartucho}}</th>
+                                <th scope="row">{{game.fecha}}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <button (click)="ReadGames()" type="submit" class="btn btn-primary btn-block">Refrescar</button>
+            </div>
+        </div><br><br>
+    </div>
+
+    <div class="container bg-light mt-5" style="width: 40rem;" >
+        <div class="row justify-content-center">
+            <div class="col-10 mt-5 mb-3 mr-2 ml-2">
+                <h2>UPDATE Game</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="colFormLabelLg">Id</label><br>
+                        <input [(ngModel)]="up_id" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="7"><br>
+                        <label for="colFormLabelLg">Id Consola</label><br>
+                        <input [(ngModel)]="up_consola" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="3"><br>
+                        <label for="colFormLabelLg">Nombre</label>
+                        <input [(ngModel)]="up_nombre" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="Nombre de Consola"><br>
+                        <label for="colFormLabelLg">Cartucho</label>
+                        <input [(ngModel)]="up_cartucho" [ngModelOptions]="{standalone: true}" type="text"
+                            class="form-control" placeholder="/assets/img/imagen.jpg"><br>
+                        <label for="colFormLabelLg">Fecha Publicación.</label>
+                        <input [(ngModel)]="up_fecha" [ngModelOptions]="{standalone: true}" type="date"
+                            class="form-control" placeholder="1990-01-01"><br>
+                        <label for="colFormLabelLg">Descripción</label>
+                        <textarea [(ngModel)]="up_descripcion" [ngModelOptions]="{standalone: true}" class="form-control"
+                            placeholder="Descripcion del Juego" rows="3"></textarea>
+
+                    </div>
+                </form>
+                <button (click)="UpdateGame()" type="submit" class="btn btn-primary btn-block">Actualizar</button>
+            </div>
+        </div><br>
+    </div>
+
+    <div class="container bg-light mt-5" style="width: 40rem;" >
+        <div class="row justify-content-center">
+            <div class="col-10 mt-4 mb-3 mr-2 ml-2">
+                <h2>DELETE Game</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Id juego a eliminar:</label>
+                        <input [(ngModel)]="del_id" [ngModelOptions]="{standalone: true}" class="form-control"
+                             placeholder="10"><br>
+                    </div>
+                </form>
+                <button (click)="DeleteGame()" type="submit" class="btn btn-primary btn-block">Eliminar</button>
+            </div>
+        </div>
+        <br>    
+    </div>
+    <br><br>
+</body>

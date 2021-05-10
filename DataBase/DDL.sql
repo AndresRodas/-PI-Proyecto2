@@ -145,5 +145,27 @@ values (4,1,'Yo pasaba horas jugandolo tambien jaja'),
        (2,6,'Me gusta mas Final Fantasy :v'),
        (3,6,'no lo jugué aun, el primero que jugué fue the ocarina of zelda :(');
 
+<<<<<<< Updated upstream:DataBase/DDL_Practicas_iniciales.sql
 describe usuario;
 select * from usuario;
+=======
+#Consultas
+#consulta 1
+select u.nombre usuario, count(bi.id_juego) juegos from biblioteca bi
+    inner join usuario u on bi.id_usuario = u.id
+    group by usuario
+    order by juegos desc limit 5;
+#consulta 2
+select u.nombre usuario, count(co.id_usuario) comentarios from comentario co
+    inner join usuario u on co.id_usuario = u.id
+    group by usuario order by comentarios desc limit 5;
+#consulta 3
+select j.nombre juego, c.nombre consola, avg(bi.puntuacion) promedio from biblioteca bi
+    inner join juego j on bi.id_juego = j.id
+    inner join consola c on j.id_consola = c.id
+    group by juego, consola order by promedio desc limit 5;
+#consulta 4
+select nombre juego, fecha from juego
+    order by fecha;
+
+>>>>>>> Stashed changes:DataBase/DDL.sql
