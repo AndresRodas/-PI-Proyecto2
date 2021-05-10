@@ -14,7 +14,7 @@ export class GamesService {
     "Content-Type": "application/json"
   })
   
-  //Obtener usuarios
+  //Obtener usuarios 
   GetUsers(){
     const url = 'http://localhost:3600/getUsers';
     return this.http.get(url);
@@ -226,7 +226,7 @@ export class GamesService {
   }
 
   UpdatePass(id:number, password:string){
-    const url = 'http://localhost:3600/respass/'+id
+    const url = 'http://localhost:3600/res/pass/'+id
     return this.http.put(
       url,
       {

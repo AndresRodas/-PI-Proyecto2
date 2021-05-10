@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false })); //info anidada por medio de ru
 //routes
 app.use(cors())
 app.use(Routes);
-//run
+//run 
 app.listen(app.get('port'), () => {
     console.log('Server on Port 3600 ')
 })

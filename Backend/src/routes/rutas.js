@@ -1,7 +1,7 @@
 const { Router } = require('express'); //se jala ruta de express
 const router = Router();
 const BD = require('../config/configbd');
-var nodemailer = require('nodemailer')
+var nodemailer = require('nodemailer') //para enviar el correo
 
 //get usuarios
 router.get('/getUsers', async (req, res) => {
@@ -156,7 +156,7 @@ router.get('/getLibrary', async (req, res) => {
             console.log('Error al hacer consulta: ' + err)
         }
     });
-
+})
 //get query1
 router.get('/query1', async (req, res) => {
     const sql = `
@@ -303,26 +303,6 @@ router.post('/setGame', async (req, res) => {
     });
 })
 
-
-
-
-//UPDATE MYSQL
-router.put("/:id", async (req, res) => {
-    const { nombre, apellido, genero } = req.body;
-    const { id } = req.params;
-    const query = `
-        UPDATE persona
-        SET nombre = ?, apellido = ?, genero = ? WHERE id = ?
-    `;
-    BD.query(query, [nombre, apellido, genero, id], (err, rows, fields) => {
-        if (!err) {
-            res.json({ Status: 'Persona ' + nombre + ' editada!' });
-        } else {
-            console.log('Error al hacer consulta: ' + err)
-        }
-    })
-})
-
 //update usuario
 router.put('/upUser/:id', async (req, res) => {
     const { nombre, apellido, username, correo, password, biografia, fecha } = req.body;
@@ -359,7 +339,7 @@ router.put('/upGame/:id', async (req, res) => {
     })
 })
 //update pass
-router.put('/respass/:id', async (req, res) => {
+router.put('/res/pass/:id', async (req, res) => {
     const { password } = req.body;
     const { id } = req.params;
     const query = `
@@ -378,7 +358,7 @@ router.put('/respass/:id', async (req, res) => {
 
 
 
-
+ 
 //DELETE user
 router.delete("/DeleteUser/:id", async (req, res) => {
     const { id } = req.params;
@@ -404,9 +384,8 @@ router.delete("/DeleteGame/:id", async (req, res) => {
         } else {
             console.log('Error al hacer consulta: ' + err)
         }
-    });
+    })
 })
 
-})
 
 module.exports = router;
