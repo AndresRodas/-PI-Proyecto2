@@ -1,0 +1,23 @@
+version: '2'
+
+services: 
+    frontend:
+        build: Frontend/juegos
+        ports: 
+            - "4200:4200"
+        container_name: front-container
+        restart: always
+
+    backend:
+        build: Backend
+        ports: 
+            - "3600:3600"
+        container_name: back-container
+        restart: always
+        links: 
+            - database
+    
+    database:
+        build: Database
+        container_name: database-container
+        restart: always

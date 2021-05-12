@@ -1,11 +1,19 @@
 const mysql = require('mysql');
 const { promisify } = require('util');
 
-database = {
-    host: 'localhost',
-    user: 'root',
-    password: 'MAYQ',
-    database: 'practicas_iniciales'
+// database = {
+//     host: 'Database',
+//     user: 'root',
+//     password: 'MAYQ',
+//     database: 'practicas_iniciales',
+//     charset  : 'utf8' 
+// }
+
+ database = {
+     host: 'localhost',
+     user: 'root',
+     password: 'MAYQ',
+     database: 'practicas_iniciales'
 }
 const pool = mysql.createPool(database)
 pool.getConnection((err,connection)=>{
